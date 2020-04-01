@@ -1,4 +1,10 @@
 package model.problemes;
 
-public class TypeDeProbleme {
+import model.algorithmes.Algorithme;
+
+import java.util.List;
+
+public abstract class TypeDeProbleme {
+    private String nom;
+    private List<Algorithme> algoCompatibles;
 }

@@ -1,4 +1,31 @@
 package model.algorithmes;
 
-public class Glouton {
+import java.util.HashMap;
+import java.util.List;
+
+public class Glouton extends Algorithme{
+    @Override
+    public void lancer() {
+
+    }
+
+    @Override
+    public List<String> obtenirParametres() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, String> obtenirParametresParDefaut() {
+        return null;
+    }
+
+    @Override
+    public void parametrer(HashMap<String, String> saisiUtilisateur) {
+
+    }
+
+    @Override
+    public void arreter() {
+
+    }
 }
