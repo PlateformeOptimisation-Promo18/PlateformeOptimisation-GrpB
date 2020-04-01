@@ -1,8 +1,11 @@
 package model.algorithmes.spea2;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
 import java.util.ArrayList;
 
-public class Population {
+public class Population implements Observable {
 
     private ArrayList<Individu> individus;
 
@@ -35,5 +38,22 @@ public class Population {
         //TODO :
     }
 
+    public void croiserPopulation(float probaCroisement){
+        // TODO :
+    }
 
+    public void muterPopulaiton(float probaMutation, float probaMutaionDesGenes){
+        // TODO :
+    }
+
+
+    @Override
+    public void addListener(InvalidationListener listener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+
+    }
 }
