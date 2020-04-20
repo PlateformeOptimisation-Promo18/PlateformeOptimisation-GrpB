@@ -1,14 +1,16 @@
 package model.algorithmes;
 
 import model.generic.Parametre;
+import model.problemes.Probleme;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 public class Fourmis extends Algorithme{
 
     @Override
-    public void lancer() {
+    public void lancer(Probleme probleme) {
 
     }
 
@@ -28,7 +30,7 @@ public class Fourmis extends Algorithme{
     }
 
     @Override
-    public void arreter() {
+    public void update(Observable observable, Object o) {
 
     }
 }

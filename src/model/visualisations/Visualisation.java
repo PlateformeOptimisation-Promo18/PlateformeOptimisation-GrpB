@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class Visualisation {
-    private HashMap<Algorithme, TypeDeProbleme> visualisationCompatible;
+    private HashMap<Algorithme, TypeDeProbleme> visualisationCompatible; //Permet de savoir quels couples Algorithme/Problème peuvent accéder à cette visualisation.
     private Chart graph;
     private List<Solution> listeDeSolutions;
 

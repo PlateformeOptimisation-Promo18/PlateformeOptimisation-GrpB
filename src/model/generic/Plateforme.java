@@ -10,18 +10,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Plateforme implements Observer {
+public class Plateforme {
     private Algorithme algoChoisis;
     private TypeDeProbleme typeDeProblemeChoisis;
     private Probleme problemeChoisis;
     private Visualisation visualisationChoisis;
-
-    private ObservableList<Solution> solutionsObservables;
-    private ObservableList<Double> perfObservable;
-    private ObservableList<Double> tempsObservable;
-    private StopRequis stop;
-    private List<Parametre> listParametre;
-    //TODO ajouter attribut front de pareto
 
     public void lancerOptimisation(Algorithme algoChoisis){
 
@@ -52,11 +45,6 @@ public class Plateforme implements Observer {
     }
 
     public void choixParametrages(){
-
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
 
     }
 }
