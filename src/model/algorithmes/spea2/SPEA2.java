@@ -1,10 +1,13 @@
 package model.algorithmes.spea2;
 
 import model.algorithmes.Algorithme;
+import model.generic.Parametre;
+import model.problemes.Probleme;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 public class SPEA2 extends Algorithme {
 
@@ -16,39 +19,28 @@ public class SPEA2 extends Algorithme {
     private int nombreGeneration;
     private ArrayList<ArrayList<Integer>> listeDesPossibilite;
 
-
-
-
-
-
-
-
-
-
-
-
     @Override
-    public void lancer() {
+    public void lancer(Probleme probleme) {
 
     }
 
     @Override
-    public List<String> obtenirParametres() {
+    public List<Parametre> obtenirParametres() {
         return null;
     }
 
     @Override
-    public HashMap<String, String> obtenirParametresParDefaut() {
+    public List<Parametre> obtenirParametresParDefaut() {
         return null;
     }
 
     @Override
-    public void parametrer(HashMap<String, String> saisiUtilisateur) {
+    public void parametrer(List<Parametre> saisieUtilisateur) {
 
     }
 
     @Override
-    public void arreter() {
+    public void update(Observable observable, Object o) {
 
     }
 }
