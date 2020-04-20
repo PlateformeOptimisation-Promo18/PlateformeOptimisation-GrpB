@@ -1,26 +1,29 @@
 package model.algorithmes;
 
+import model.generic.Parametre;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class Fourmis extends Algorithme{
+
     @Override
     public void lancer() {
 
     }
 
     @Override
-    public List<String> obtenirParametres() {
+    public List<Parametre> obtenirParametres() {
         return null;
     }
 
     @Override
-    public HashMap<String, String> obtenirParametresParDefaut() {
+    public List<Parametre> obtenirParametresParDefaut() {
         return null;
     }
 
     @Override
-    public void parametrer(HashMap<String, String> saisiUtilisateur) {
+    public void parametrer(List<Parametre> saisieUtilisateur) {
 
     }
 

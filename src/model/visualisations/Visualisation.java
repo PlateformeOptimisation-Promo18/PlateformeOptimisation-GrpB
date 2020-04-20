@@ -1,7 +1,7 @@
 package model.visualisations;
 
 import javafx.scene.chart.Chart;
-import model.Solution;
+import model.generic.Solution;
 import model.algorithmes.Algorithme;
 import model.problemes.TypeDeProbleme;
 

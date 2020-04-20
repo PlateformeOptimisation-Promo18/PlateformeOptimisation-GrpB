@@ -2,7 +2,7 @@ package model.algorithmes.spea2;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import model.Solution;
+import model.generic.Solution;
 
 public class Individu extends Solution implements Comparable<Individu>, Observable {
 

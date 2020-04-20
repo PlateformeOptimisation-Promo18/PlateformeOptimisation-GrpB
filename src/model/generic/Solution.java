@@ -1,4 +1,4 @@
-package model;
+package model.generic;
 
 public abstract class Solution {
     private int[] valeurs;
