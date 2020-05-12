@@ -1,13 +1,12 @@
-package model.algorithmes;
+package main.model.algorithmes;
 
-import model.generic.Parametre;
-import model.problemes.Probleme;
+import main.model.generic.Parametre;
+import main.model.problemes.Probleme;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 
-public class Glouton extends Algorithme{
+public class Tabou extends Algorithme{
 
     @Override
     public void lancer(Probleme probleme) {

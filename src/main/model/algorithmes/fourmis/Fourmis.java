@@ -1,13 +1,13 @@
-package model.algorithmes;
+package main.model.algorithmes.fourmis;
 
-import model.generic.Parametre;
-import model.problemes.Probleme;
+import main.model.algorithmes.Algorithme;
+import main.model.generic.Parametre;
+import main.model.problemes.Probleme;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 
-public class Tabou extends Algorithme{
+public class Fourmis extends Algorithme {
 
     @Override
     public void lancer(Probleme probleme) {

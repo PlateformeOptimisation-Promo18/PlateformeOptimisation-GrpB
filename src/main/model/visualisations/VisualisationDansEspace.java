@@ -1,4 +1,4 @@
-package model.visualisations;
+package main.model.visualisations;
 
 public class VisualisationDansEspace extends Visualisation{
     private int maximumSolutionsAAfficher;

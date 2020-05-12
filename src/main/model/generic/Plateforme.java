@@ -1,14 +1,9 @@
-package model.generic;
+package main.model.generic;
 
-import javafx.collections.ObservableList;
-import model.algorithmes.Algorithme;
-import model.problemes.Probleme;
-import model.problemes.TypeDeProbleme;
-import model.visualisations.Visualisation;
-
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import main.model.algorithmes.Algorithme;
+import main.model.problemes.Probleme;
+import main.model.problemes.TypeDeProbleme;
+import main.model.visualisations.Visualisation;
 
 public class Plateforme {
     private Algorithme algoChoisis;

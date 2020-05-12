@@ -1,4 +1,4 @@
-package model.problemes;
+package main.model.problemes;
 
 import java.io.File;
 

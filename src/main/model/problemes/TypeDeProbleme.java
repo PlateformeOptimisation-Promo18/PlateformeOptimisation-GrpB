@@ -1,6 +1,6 @@
-package model.problemes;
+package main.model.problemes;
 
-import model.algorithmes.Algorithme;
+import main.model.algorithmes.Algorithme;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model.generic;
+package main.model.generic;
 
  /**
  * Cette classe doit être utilisée pour réaliser le paramétrage des algorithmes.

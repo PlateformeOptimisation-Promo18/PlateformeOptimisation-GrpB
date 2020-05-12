@@ -1,11 +1,10 @@
-package model.algorithmes.spea2;
+package main.model.algorithmes.spea2;
 
-import model.algorithmes.Algorithme;
-import model.generic.Parametre;
-import model.problemes.Probleme;
+import main.model.algorithmes.Algorithme;
+import main.model.generic.Parametre;
+import main.model.problemes.Probleme;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 

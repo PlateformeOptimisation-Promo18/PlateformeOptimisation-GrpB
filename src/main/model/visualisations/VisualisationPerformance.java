@@ -1,4 +1,4 @@
-package model.visualisations;
+package main.model.visualisations;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package model.generic;
+package main.model.generic;
 
 import java.util.Observable;
 

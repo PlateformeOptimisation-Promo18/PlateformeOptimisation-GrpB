@@ -1,10 +1,10 @@
-package model.algorithmes;
+package main.model.algorithmes;
 
 import javafx.collections.ObservableList;
-import model.generic.Parametre;
-import model.generic.Solution;
-import model.generic.StopRequis;
-import model.problemes.Probleme;
+import main.model.generic.Parametre;
+import main.model.generic.Solution;
+import main.model.generic.StopRequis;
+import main.model.problemes.Probleme;
 
 import java.util.List;
 import java.util.Observer;

@@ -1,4 +1,4 @@
-package model.algorithmes.spea2;
+package main.model.algorithmes.spea2;
 
 public class Archive extends Population {
 
