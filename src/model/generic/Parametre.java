@@ -3,7 +3,7 @@ package model.generic;
  /**
  * Cette classe doit être utilisée pour réaliser le paramétrage des algorithmes.
   * Elle sert également à l'IHM, pour savoir quels sont les paramètres à demander à l'utilisateur.
- */
+ **/
 
 public class Parametre {
     private Number value;
