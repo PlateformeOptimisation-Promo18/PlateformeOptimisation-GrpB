@@ -1,9 +1,9 @@
 package main.model.visualisations;
 
 import javafx.scene.chart.Chart;
-import main.model.generic.Solution;
 import main.model.algorithmes.Algorithme;
 import main.model.problemes.TypeDeProbleme;
+import main.model.generic.Solution;
 
 import java.util.HashMap;
 import java.util.List;

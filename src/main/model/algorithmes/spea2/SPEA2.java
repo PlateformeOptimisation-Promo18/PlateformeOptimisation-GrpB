@@ -2,7 +2,7 @@ package main.model.algorithmes.spea2;
 
 import main.model.algorithmes.Algorithme;
 import main.model.generic.Parametre;
-import main.model.problemes.Probleme;
+import main.model.problemes.Problem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class SPEA2 extends Algorithme {
     private ArrayList<ArrayList<Integer>> listeDesPossibilite;
 
     @Override
-    public void lancer(Probleme probleme) {
+    public void lancer(Problem probleme) {
 
     }
 
