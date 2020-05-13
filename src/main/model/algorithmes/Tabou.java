@@ -1,15 +1,15 @@
 package main.model.algorithmes;
 
 import main.model.generic.Parametre;
-import main.model.problemes.Probleme;
 
 import java.util.List;
 import java.util.Observable;
+import main.model.problemes.Problem;
 
 public class Tabou extends Algorithme{
 
     @Override
-    public void lancer(Probleme probleme) {
+    public void lancer(Problem probleme) {
 
     }
 

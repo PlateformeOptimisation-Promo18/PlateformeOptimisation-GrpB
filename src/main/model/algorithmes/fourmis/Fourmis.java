@@ -2,7 +2,7 @@ package main.model.algorithmes.fourmis;
 
 import main.model.algorithmes.Algorithme;
 import main.model.generic.Parametre;
-import main.model.problemes.Probleme;
+import main.model.problemes.Problem;
 
 import java.util.List;
 import java.util.Observable;
@@ -10,7 +10,7 @@ import java.util.Observable;
 public class Fourmis extends Algorithme {
 
     @Override
-    public void lancer(Probleme probleme) {
+    public void lancer(Problem probleme) {
 
     }
 

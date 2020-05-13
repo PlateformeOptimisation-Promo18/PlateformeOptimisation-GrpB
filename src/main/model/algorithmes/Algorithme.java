@@ -2,9 +2,9 @@ package main.model.algorithmes;
 
 import javafx.collections.ObservableList;
 import main.model.generic.Parametre;
-import main.model.generic.Solution;
 import main.model.generic.StopRequis;
-import main.model.problemes.Probleme;
+import main.model.generic.Solution;
+import main.model.problemes.Problem;
 
 import java.util.List;
 import java.util.Observer;
@@ -17,7 +17,7 @@ public abstract class Algorithme implements Observer {
     private List<Parametre> listParametre;
     //TODO ajouter attribut front de pareto
 
-    abstract public void lancer(Probleme probleme);
+    abstract public void lancer(Problem probleme);
 
     /**
      * Permet de savoir le nom des paramètres que l'utilisateur doit renseigner.

@@ -3,6 +3,7 @@ package main.model.algorithmes.spea2;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import main.model.generic.Solution;
+import main.model.problemes.Problem;
 
 public class Individu extends Solution implements Comparable<Individu>, Observable {
 
@@ -10,6 +11,9 @@ public class Individu extends Solution implements Comparable<Individu>, Observab
     private int rawFitness;
     private int fitness;
 
+    public Individu(Solution sol) {
+        super(sol);
+    }
 
     public void muter(float probaMutation, float probaMutationDesGenes){
         //TODO :
@@ -18,12 +22,6 @@ public class Individu extends Solution implements Comparable<Individu>, Observab
     public Individu[] croiser(Individu individu){
         //TODO :
         return null;
-    }
-
-
-    @Override
-    public void evaluer() {
-
     }
 
     @Override
@@ -38,6 +36,11 @@ public class Individu extends Solution implements Comparable<Individu>, Observab
 
     @Override
     public void removeListener(InvalidationListener listener) {
+
+    }
+
+    @Override
+    public void evaluate(Problem pb) {
 
     }
 }
