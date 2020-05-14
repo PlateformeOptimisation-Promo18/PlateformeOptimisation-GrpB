@@ -1,14 +1,13 @@
 package main.model.algorithmes.spea2;
 
-import main.model.algorithmes.Algorithme;
-import main.model.generic.Parametre;
+import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
+import main.model.generic.InterfaceRandom;
+import main.model.generic.StopRequis;
 import main.model.problemes.Probleme;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
 
-public class SPEA2 extends Algorithme {
+public class SPEA2 extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
     private int taillePopulation;
     private int tailleArchive;
@@ -18,28 +17,12 @@ public class SPEA2 extends Algorithme {
     private int nombreGeneration;
     private ArrayList<ArrayList<Integer>> listeDesPossibilite;
 
-    @Override
-    public void lancer(Probleme probleme) {
-
+    public SPEA2(StopRequis stop) {
+        super(stop);
     }
 
     @Override
-    public List<Parametre> obtenirParametres() {
-        return null;
-    }
-
-    @Override
-    public List<Parametre> obtenirParametresParDefaut() {
-        return null;
-    }
-
-    @Override
-    public void parametrer(List<Parametre> saisieUtilisateur) {
-
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
+    public void launch(Probleme pb, InterfaceRandom generator) {
 
     }
 }
