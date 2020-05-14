@@ -2,14 +2,25 @@ package main.model.algorithmes.spea2;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import main.model.generic.InterfaceRandom;
 import main.model.generic.Solution;
-import main.model.problemes.Problem;
+import main.model.problemes.Probleme;
 
 public class Individu extends Solution implements Comparable<Individu>, Observable {
 
     private  int force;
     private int rawFitness;
     private int fitness;
+
+    @Override
+    public void evaluate(Probleme pb) {
+
+    }
+
+    @Override
+    public void randomSetValues(Probleme pb, InterfaceRandom generator) throws Exception {
+
+    }
 
     public Individu(Solution sol) {
         super(sol);
@@ -39,8 +50,4 @@ public class Individu extends Solution implements Comparable<Individu>, Observab
 
     }
 
-    @Override
-    public void evaluate(Problem pb) {
-
-    }
 }

@@ -1,7 +1,8 @@
 package main.model.problemes;
+
 import main.model.generic.Solution;
 
-public interface Problem {
+public interface Probleme {
 	
 	public Solution getSolution();
 
