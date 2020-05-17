@@ -1,35 +1,19 @@
 package main.model.algorithmes;
 
-import main.model.generic.Parametre;
+import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
+import main.model.generic.InterfaceRandom;
+import main.model.generic.StopRequis;
+import main.model.problemes.Probleme;
 
-import java.util.List;
-import java.util.Observable;
-import main.model.problemes.Problem;
 
-public class Glouton extends Algorithme{
+public class Glouton extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
-    @Override
-    public void lancer(Problem probleme) {
-
+    public Glouton(StopRequis stop) {
+        super(stop);
     }
 
     @Override
-    public List<Parametre> obtenirParametres() {
-        return null;
-    }
-
-    @Override
-    public List<Parametre> obtenirParametresParDefaut() {
-        return null;
-    }
-
-    @Override
-    public void parametrer(List<Parametre> saisieUtilisateur) {
-
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
+    public void launch(Probleme pb, InterfaceRandom generator) {
 
     }
 }

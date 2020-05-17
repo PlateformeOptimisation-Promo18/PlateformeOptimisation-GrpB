@@ -1,7 +1,8 @@
 package main.model.problemes;
+
 import main.model.generic.Solution;
 
-public interface Problem {
+public interface Probleme {
 	
 	public Solution getSolution();
 
@@ -20,5 +21,7 @@ public interface Problem {
 	public boolean[] GetActiveVariable(Solution sol);
 
 	public int getTabSizeDomainVariable(int i) throws Exception;
+
+	public String getName();
 	
 }

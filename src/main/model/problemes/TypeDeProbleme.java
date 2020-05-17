@@ -1,6 +1,6 @@
 package main.model.problemes;
 
-import main.model.algorithmes.Algorithme;
+import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
 
 public abstract class TypeDeProbleme {
     private String nom;
-    private List<Algorithme> algoCompatibles; //Permet de savoir quels algorithmes on peut lancer avec ce type de problème.
+    private List<CombinatorialMultiObjectiveOptimizationAlgorithm> algoCompatibles; //Permet de savoir quels algorithmes on peut lancer avec ce type de problème.
 }
