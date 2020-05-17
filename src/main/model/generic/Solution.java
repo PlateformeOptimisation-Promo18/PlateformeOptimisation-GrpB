@@ -11,9 +11,9 @@ public abstract class Solution {
 	protected List<Double> valuesObjectivesNormalized;
 	protected double hypervolum = 0.0;
 	
-	public abstract void evaluate(Probleme pb);
-	public abstract void randomSetValues(Probleme pb, InterfaceRandom generator) throws Exception;
-	public Solution(Probleme gp) {
+	public abstract void evaluate(Problem pb);
+	public abstract void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception;
+	public Solution(Problem gp) {
 		int iNbObjectives = gp.getNbObjectives();
 		valuesObjectives = new ArrayList<>(iNbObjectives);
 		for (int i = 0; i < iNbObjectives; i++)
@@ -72,7 +72,7 @@ public abstract class Solution {
 	public int getValueVariable(int iIndexVariable) {
 		return valueVariables[iIndexVariable];
 	}
-	public double evaluatePerf(Probleme pb) {
+	public double evaluatePerf(Problem pb) {
 		evaluate(pb);
 		computeNormalizedObjective(pb);
 		hypervolum = valuesObjectivesNormalized.get(0);
@@ -81,7 +81,7 @@ public abstract class Solution {
 		}
 		return hypervolum;
 	}
-	protected void computeNormalizedObjective(Probleme pb) {
+	protected void computeNormalizedObjective(Problem pb) {
 		for (int i = 0; i < valuesObjectives.size(); i++) {
 			valuesObjectivesNormalized.set(i,
 					(pb.getMaxObjectif(i) - valuesObjectives.get(i)) / (pb.getMaxObjectif(i) - pb.getMinObjectif(i)));

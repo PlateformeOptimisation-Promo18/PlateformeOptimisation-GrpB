@@ -1,9 +1,9 @@
 package main.model.problemes;
 
-import main.model.generic.Probleme;
+import main.model.generic.Problem;
 import main.model.generic.Solution;
 
-public class GraphProject implements Probleme {
+public class GraphProject implements Problem {
 
     private String name;
 

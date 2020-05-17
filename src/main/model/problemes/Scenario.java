@@ -1,7 +1,7 @@
 package main.model.problemes;
 
 import main.model.generic.InterfaceRandom;
-import main.model.generic.Probleme;
+import main.model.generic.Problem;
 import main.model.generic.Solution;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Scenario extends Solution {
         valuesObjectives.set(1, iVal);
     }
 
-    public void evaluate(Probleme gpTest) {
+    public void evaluate(Problem gpTest) {
 
         int tableauEntier[] = {0, 0, 0, 0, 0};
         if (Arrays.equals(this.valueVariables, tableauEntier)) {
@@ -195,7 +195,7 @@ public class Scenario extends Solution {
 
 
     @Override
-    public void randomSetValues(Probleme pb, InterfaceRandom generator) throws Exception {
+    public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
         // TODO Auto-generated method stub
 
     }

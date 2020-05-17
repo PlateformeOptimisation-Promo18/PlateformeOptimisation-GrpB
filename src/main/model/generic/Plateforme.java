@@ -5,7 +5,7 @@ import main.model.visualisations.Visualisation;
 public class Plateforme {
     private CombinatorialMultiObjectiveOptimizationAlgorithm algoChoisis;
     private TypeDeProbleme typeDeProblemeChoisis;
-    private Probleme problemeChoisis;
+    private Problem problemeChoisis;
     private Visualisation visualisationChoisis;
 
     public void lancerOptimisation(CombinatorialMultiObjectiveOptimizationAlgorithm algoChoisis){

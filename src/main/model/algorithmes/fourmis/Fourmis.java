@@ -2,8 +2,8 @@ package main.model.algorithmes.fourmis;
 
 import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
 import main.model.generic.InterfaceRandom;
-import main.model.generic.StopRequis;
-import main.model.generic.Probleme;
+import main.model.generic.StopRequired;
+import main.model.generic.Problem;
 
 public class Fourmis extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
@@ -15,12 +15,12 @@ public class Fourmis extends CombinatorialMultiObjectiveOptimizationAlgorithm {
      * @param stop          objet écouteur arrêt utilisateur
      * @param algorithmName nom de l'algorithme pour l'affichage et la sauveguarde des résulats
      */
-    public Fourmis(Probleme pb, StopRequis stop, String algorithmName) {
+    public Fourmis(Problem pb, StopRequired stop, String algorithmName) {
         super(pb, stop, algorithmName);
     }
 
     @Override
-    public void launch(Probleme pb, InterfaceRandom generator) {
+    public void launch(Problem pb, InterfaceRandom generator) {
 
     }
 

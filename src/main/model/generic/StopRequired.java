@@ -2,7 +2,7 @@ package main.model.generic;
 
 import java.util.Observable;
 
-public class StopRequis extends Observable {
+public class StopRequired extends Observable {
     private boolean stop;
 
     public void setStopRequired(){
