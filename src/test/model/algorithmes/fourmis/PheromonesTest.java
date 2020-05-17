@@ -1,6 +1,7 @@
 package test.model.algorithmes.fourmis;
 
 import main.model.algorithmes.fourmis.Pheromones;
+import main.model.problemes.Probleme;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,16 +16,20 @@ class PheromonesTest {
     @BeforeEach
     void setUp(){
         pheromones = new Pheromones();
-        List<double[]> setUp = new LinkedList<>();
+        List<double[]> pheromoneTrails = new LinkedList<>();
         double[] tab2 = {0.5,0.5};
-        double[] tab3 = {1/3, 1/3, 0.333};
+        double[] tab3 = {1/3, 1/3, 1/3};
         double[] tab2b = {0.5,0.5};
-        setUp.add(tab2);
-        setUp.add(tab3);
-        setUp.add(tab2b);
-        pheromones.setTracePheromones(setUp);
+        pheromoneTrails.add(tab2);
+        pheromoneTrails.add(tab3);
+        pheromoneTrails.add(tab2b);
+        pheromones.setTracePheromones(pheromoneTrails);
     }
 
+    @Test
+    void pheromonesTrails_should_have_ant_way_up_of_01(){
+
+    }
 
     @Test
     void proba_should_equals_1(){
