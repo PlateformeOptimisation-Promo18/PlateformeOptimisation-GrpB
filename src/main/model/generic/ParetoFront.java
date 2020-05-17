@@ -1,7 +1,5 @@
 package main.model.generic;
 
-import main.model.problemes.Probleme;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,19 +36,20 @@ public class ParetoFront {
         return this.set.size();
     }
 
-    public void addSolutionIfIsParetoFrontSolution(Solution solutionToAdd) {
-
+    public boolean addSolutionIfIsParetoFrontSolution(Solution solutionToAdd) {
+        return false;
     }
+
     //Teste si une solution en domine une autre
-    public static boolean domine(Solution sol1, Solution sol2, Probleme pb) {
+    public static boolean domine(Solution sol1, Solution sol2, Problem pb) {
         return false;
     }
     //Actualise le front de pareto
-    public void updateFront(List<Solution> solutionSet, Probleme pb) {
+    public void updateFront(List<Solution> solutionSet, Problem pb) {
 
     }
 
-    public double calculHV(Probleme pb) {
+    public double calculHV(Problem pb) {
         return 0.0;
     }
 
@@ -63,19 +62,19 @@ public class ParetoFront {
     }
 
 
-    public void reduceIfNecessary(int nbMaxSol, Probleme pb) {
+    public void reduceIfNecessary(int nbMaxSol, Problem pb) {
 
     }
 
-    private double getDistance(Solution sol1, Solution sol2, Probleme pb) {
+    private double getDistance(Solution sol1, Solution sol2, Problem pb) {
         return 0.0;
     }
 
-    private double getDistanceClusters(ArrayList<Solution> cluster1, ArrayList<Solution> cluster2, Probleme pb) {
+    private double getDistanceClusters(ArrayList<Solution> cluster1, ArrayList<Solution> cluster2, Problem pb) {
         return 0.0;
     }
 
-    private Solution centroide(ArrayList<Solution> cluster, Probleme pb) {
+    private Solution centroide(ArrayList<Solution> cluster, Problem pb) {
         return null;
     }
 }

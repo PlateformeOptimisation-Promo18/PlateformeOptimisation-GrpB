@@ -5,15 +5,15 @@ package main.model.generic;
   * Elle sert également à l'IHM, pour savoir quels sont les paramètres à demander à l'utilisateur.
  **/
 
-public class Parametre {
+public class Parameter {
     private Number value;
     private String name;
 
-    public Parametre(String name){
+    public Parameter(String name){
         this.name = name;
     }
 
-    public Parametre(Number value, String name) {
+    public Parameter(Number value, String name) {
         this.value = value;
         this.name = name;
     }

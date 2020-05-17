@@ -4,7 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Solution;
-import main.model.problemes.Probleme;
+import main.model.generic.Problem;
 
 public class Individu extends Solution implements Comparable<Individu>, Observable {
 
@@ -13,12 +13,12 @@ public class Individu extends Solution implements Comparable<Individu>, Observab
     private int fitness;
 
     @Override
-    public void evaluate(Probleme pb) {
+    public void evaluate(Problem pb) {
 
     }
 
     @Override
-    public void randomSetValues(Probleme pb, InterfaceRandom generator) throws Exception {
+    public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
 
     }
 
