@@ -2,8 +2,8 @@ package main.model.algorithmes;
 
 import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
 import main.model.generic.InterfaceRandom;
-import main.model.generic.StopRequis;
-import main.model.problemes.Probleme;
+import main.model.generic.StopRequired;
+import main.model.generic.Problem;
 
 public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
@@ -15,12 +15,12 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
      * @param stop          objet écouteur arrêt utilisateur
      * @param algorithmName nom de l'algorithme pour l'affichage et la sauveguarde des résulats
      */
-    public Tabou(Probleme pb, StopRequis stop, String algorithmName) {
+    public Tabou(Problem pb, StopRequired stop, String algorithmName) {
         super(pb, stop, algorithmName);
     }
 
     @Override
-    public void launch(Probleme probleme, InterfaceRandom generator) {
+    public void launch(Problem pb, InterfaceRandom generator) {
 
     }
 }
