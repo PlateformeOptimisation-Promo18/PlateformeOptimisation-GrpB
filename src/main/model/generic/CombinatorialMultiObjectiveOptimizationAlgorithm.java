@@ -9,9 +9,6 @@ import javafx.collections.ObservableList;
 
 import java.util.Observer;
 
-import main.model.generic.*;
-import main.model.problemes.Probleme;
-
 /**
  * Classe abstraite pour les traitements génériques des algorithmes
  * interface entre les algos, le problème à résoudre et l'IHM
@@ -63,10 +60,10 @@ public abstract class CombinatorialMultiObjectiveOptimizationAlgorithm implement
 	 * il faut qu'elle commence par la collecte des paramètres (listParam)
 	 * Elle va ensuite générer des solutions
 	 * A chaque pas de l'algorithme (boucle générale), il faut appeler la méthode UpdateAndSave()
-	 * @param pb	instance du problème à résoudre
+	 * @param probleme	instance du problème à résoudre
 	 * @param generator	objet générateur de nombre (classe héritant de InterfaceRandom)
 	 */
-	public abstract void launch(InterfaceRandom generator);
+	public abstract void launch(Probleme probleme, InterfaceRandom generator);
 
 	public void updateAndSave(List<Solution> listNewSolutions, long lCurrentTime){
 		// add new solutions to the observable set

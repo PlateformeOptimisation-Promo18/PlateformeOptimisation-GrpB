@@ -1,7 +1,5 @@
 package main.model.generic;
 
-import main.model.problemes.Probleme;
-import main.model.problemes.TypeDeProbleme;
 import main.model.visualisations.Visualisation;
 
 public class Plateforme {

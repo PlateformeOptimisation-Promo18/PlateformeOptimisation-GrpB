@@ -4,7 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Solution;
-import main.model.problemes.Probleme;
+import main.model.generic.Probleme;
 
 public class Individu extends Solution implements Comparable<Individu>, Observable {
 

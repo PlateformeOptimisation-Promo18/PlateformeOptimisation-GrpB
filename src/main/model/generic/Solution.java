@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import main.model.problemes.Probleme;
-
 public abstract class Solution {
 
 	protected int[] valueVariables;

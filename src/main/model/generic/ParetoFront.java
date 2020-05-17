@@ -1,7 +1,5 @@
 package main.model.generic;
 
-import main.model.problemes.Probleme;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
