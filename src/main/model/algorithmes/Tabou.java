@@ -51,49 +51,54 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 			Set<Solution> listTabou = new HashSet<>();
 			
 			while((listTabou.size()<iTabouListSize)||(iNbIteration != 0) || !stopRequired){
-				
 
 				long lStartTime = System.nanoTime();
 				sSolutionCurrent.evaluate(pb);
 				evolutionHypervolum.add(sSolutionCurrent.evaluatePerf(pb));
-				bestSolutions.addSolutionIfIsParetoFrontSolution(sSolutionCurrent);
 				listTabou.add(sSolutionCurrent);
 
-				//cr�ation des voisins pour la solution
+				//création des voisins pour la solution
 				List<Solution> sNeighbours = new ArrayList<>();
 				int i;
 				for(i=0; i<listParam.get(2).getValue().intValue();i++) {
-					Solution sRandomNeighbour = pb.getSolution();
-					try {
-						sRandomNeighbour.randomSetValues(pb, generator);
-					} catch (Exception e) {
-						e.getMessage();
-					}
+					Solution sRandomNeighbour = pb.copySolution(sSolutionCurrent);
+
+					int[] tCaseValues = pb.getTabSizeDomainVariables();
+					int iIndexVariable = generator.nextInt(sSolutionCurrent.getNbVariables());
+					int iValue = generator.nextInt(tCaseValues[iIndexVariable]);
+					sRandomNeighbour.setValuesVariables(iIndexVariable,iValue );
 					sNeighbours.add(sRandomNeighbour);
 				}
-				
+
 				Solution sBestSolution = sSolutionCurrent;
 				//evaluation des meilleurs voisins
-				for (i=0; i<sNeighbours.size();i++) {
-					if((sNeighbours.get(i).evaluatePerf(pb))>sBestSolution.evaluatePerf(pb)&&(!listTabou.contains(sNeighbours.get(i)))) {
 
+				for (i=0; i<sNeighbours.size();i++) {
+					if (listTabou.contains(sNeighbours.get(i))){
+						int[] tCaseValues = pb.getTabSizeDomainVariables();
+						int iIndexVariable = generator.nextInt(sSolutionCurrent.getNbVariables());
+						int iValue = generator.nextInt(tCaseValues[iIndexVariable]);
+						sNeighbours.get(i).setValuesVariables(iIndexVariable,iValue );
+					}
+
+					listTabou.add(sNeighbours.get(i));
+
+					if((sNeighbours.get(i).evaluatePerf(pb))>sBestSolution.evaluatePerf(pb)&&(!listTabou.contains(sNeighbours.get(i)))) {
 						sBestSolution = sNeighbours.get(i);
 					}
 				}
 				long lTemps = (System.nanoTime() - lStartTime) / 1000000;
 				evolutionTime.add(lTemps);
 
-
 				//selection du meilleur voisin t
 				bestSolutions.addSolutionIfIsParetoFrontSolution(sBestSolution);
-				//insertion du mouvement t dans la liste tabou
-				listTabou.add(sBestSolution);
+
 				//nouvelle configuration s = t
 				sSolutionCurrent = sBestSolution;
 
 				List<Solution> newSolution = new ArrayList<>();
 				newSolution.add(sBestSolution);
-				
+
 				iNbIteration--;
 
 				try {
@@ -103,7 +108,5 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 				}
 
 			}
-
-  	
     }
 }
