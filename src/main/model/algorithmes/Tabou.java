@@ -8,6 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * La classe Tabou est utilisé pour rechercher la meilleur solution à un problème
+ *
+ * @author GARIS Damien
+ *
+ */
 public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
 
@@ -41,6 +47,8 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
     public void launch(Problem pb, InterfaceRandom generator) {
     	int iNbIteration = listParam.get(0).getValue().intValue();
     	int iTabouListSize = listParam.get(1).getValue().intValue();
+
+    	//Solution intiale
     	Solution sSolutionCurrent = pb.getSolution();
 
     	try {
@@ -48,65 +56,65 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
     	catch (Exception e) {
 			e.getMessage();
 		}
-			Set<Solution> listTabou = new HashSet<>();
-			
-			while((listTabou.size()<iTabouListSize)||(iNbIteration != 0) || !stopRequired){
+		//Liste Tabou vide
+    	Set<Solution> listTabou = new HashSet<>();
 
-				long lStartTime = System.nanoTime();
-				sSolutionCurrent.evaluate(pb);
-				evolutionHypervolum.add(sSolutionCurrent.evaluatePerf(pb));
-				listTabou.add(sSolutionCurrent);
+    	//Détermine si on continue la recherche de solution
+    	while((listTabou.size()<iTabouListSize)||(iNbIteration != 0) || !stopRequired){
 
-				//création des voisins pour la solution
-				List<Solution> sNeighbours = new ArrayList<>();
-				int i;
-				for(i=0; i<listParam.get(2).getValue().intValue();i++) {
-					Solution sRandomNeighbour = pb.copySolution(sSolutionCurrent);
+    		long lStartTime = System.nanoTime();
+    		sSolutionCurrent.evaluate(pb);
+    		evolutionHypervolum.add(sSolutionCurrent.evaluatePerf(pb));
+    		bestSolutions.addSolutionIfIsParetoFrontSolution(sSolutionCurrent);
+    		listTabou.add(sSolutionCurrent);
 
+    		//création des voisins pour la solution
+			List<Solution> sNeighbours = new ArrayList<>();
+			int i;
+			for(i=0; i<listParam.get(2).getValue().intValue();i++) {
+				Solution sRandomNeighbour = pb.copySolution(sSolutionCurrent);
+				int[] tCaseValues = pb.getTabSizeDomainVariables();
+				int iIndexVariable = generator.nextInt(sSolutionCurrent.getNbVariables());
+				int iValue = generator.nextInt(tCaseValues[iIndexVariable]);
+				sRandomNeighbour.setValuesVariables(iIndexVariable,iValue );
+				sNeighbours.add(sRandomNeighbour);
+			}
+
+			Solution sBestSolution = sSolutionCurrent;
+
+			//evaluation des voisins de la solution
+			for (i=0; i<sNeighbours.size();i++) {
+				//On vérifie si la solution n'existe pas déjà pour ne pas l'évaluer de nouveau
+				if (listTabou.contains(sNeighbours.get(i))){
 					int[] tCaseValues = pb.getTabSizeDomainVariables();
 					int iIndexVariable = generator.nextInt(sSolutionCurrent.getNbVariables());
 					int iValue = generator.nextInt(tCaseValues[iIndexVariable]);
-					sRandomNeighbour.setValuesVariables(iIndexVariable,iValue );
-					sNeighbours.add(sRandomNeighbour);
+					sNeighbours.get(i).setValuesVariables(iIndexVariable,iValue );
 				}
 
-				Solution sBestSolution = sSolutionCurrent;
-				//evaluation des meilleurs voisins
+				listTabou.add(sNeighbours.get(i));
 
-				for (i=0; i<sNeighbours.size();i++) {
-					if (listTabou.contains(sNeighbours.get(i))){
-						int[] tCaseValues = pb.getTabSizeDomainVariables();
-						int iIndexVariable = generator.nextInt(sSolutionCurrent.getNbVariables());
-						int iValue = generator.nextInt(tCaseValues[iIndexVariable]);
-						sNeighbours.get(i).setValuesVariables(iIndexVariable,iValue );
-					}
-
-					listTabou.add(sNeighbours.get(i));
-
-					if((sNeighbours.get(i).evaluatePerf(pb))>sBestSolution.evaluatePerf(pb)&&(!listTabou.contains(sNeighbours.get(i)))) {
-						sBestSolution = sNeighbours.get(i);
-					}
+				if((sNeighbours.get(i).evaluatePerf(pb))>sBestSolution.evaluatePerf(pb)) {
+					sBestSolution = sNeighbours.get(i);
 				}
-				long lTemps = (System.nanoTime() - lStartTime) / 1000000;
-				evolutionTime.add(lTemps);
-
-				//selection du meilleur voisin t
-				bestSolutions.addSolutionIfIsParetoFrontSolution(sBestSolution);
-
-				//nouvelle configuration s = t
-				sSolutionCurrent = sBestSolution;
-
-				List<Solution> newSolution = new ArrayList<>();
-				newSolution.add(sBestSolution);
-
-				iNbIteration--;
-
-				try {
-					updateAndSave(newSolution,lTemps);
-				} catch (IOException e) {
-					e.getMessage();
-				}
-
 			}
+			long lTemps = (System.nanoTime() - lStartTime) / 1000000;
+			evolutionTime.add(lTemps);
+
+			//nouvelle configuration, le meilleur voisin devient la solution courante
+			sSolutionCurrent = sBestSolution;
+
+			//liste de nouvelles solutions pour la mise à jour et la sauvegarde
+			List<Solution> newSolution = new ArrayList<>();
+			newSolution.add(sBestSolution);
+
+			iNbIteration--;
+
+			try {
+				updateAndSave(newSolution,lTemps);
+			} catch (IOException e) {
+				e.getMessage();
+			}
+    	}
     }
 }
