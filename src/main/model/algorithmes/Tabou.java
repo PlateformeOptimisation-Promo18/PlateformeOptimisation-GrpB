@@ -1,9 +1,12 @@
 package main.model.algorithmes;
 
-import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
-import main.model.generic.InterfaceRandom;
-import main.model.generic.StopRequired;
-import main.model.generic.Problem;
+import main.model.generic.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
@@ -21,9 +24,9 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
      * @param algorithmName nom de l'algorithme pour l'affichage et la sauveguarde des rÃ©sulats
      */
     public Tabou(Problem pb, StopRequired stop, String algorithmName) {
-        super(pb, stop, algorithmName);
+        super(pb, stop, "Tabou");
         
-        Parameter nbIterationMax = new Parameter(NB_IERATION_MAX, "Nombre d'itération max");
+        Parameter nbIterationMax = new Parameter(NB_IERATION_MAX, "Nombre d'itï¿½ration max");
         this.listParam.add(nbIterationMax);
         
         Parameter tabouListSize = new Parameter(SIZE_TABOU_LIST, "Taille de la liste Tabou");
@@ -36,64 +39,71 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
     @Override
     public void launch(Problem pb, InterfaceRandom generator) {
-
     	int iNbIteration = listParam.get(0).getValue().intValue();
     	int iTabouListSize = listParam.get(1).getValue().intValue();
-    	Solution solutionCurrent = pb.getSolution();
+    	Solution sSolutionCurrent = pb.getSolution();
+
     	try {
-			solutionCurrent.randomSetValues(pb, generator);
-			
-			Set<Solution> listTabou = new HashSet<>(); 
-			listTabou.add(solutionCurrent);
-			
+			sSolutionCurrent.randomSetValues(pb, generator);}
+    	catch (Exception e) {
+			e.getMessage();
+		}
+			Set<Solution> listTabou = new HashSet<>();
 			
 			while((listTabou.size()<iTabouListSize)||(iNbIteration != 0) || !stopRequired){
 				
-				
-				Solution sbestSolution = solutionCurrent;
-				
-				//création des voisins pour la solution
+
+				long lStartTime = System.nanoTime();
+				sSolutionCurrent.evaluate(pb);
+				evolutionHypervolum.add(sSolutionCurrent.evaluatePerf(pb));
+				bestSolutions.addSolutionIfIsParetoFrontSolution(sSolutionCurrent);
+				listTabou.add(sSolutionCurrent);
+
+				//crï¿½ation des voisins pour la solution
 				List<Solution> sNeighbours = new ArrayList<>();
 				int i;
 				for(i=0; i<listParam.get(2).getValue().intValue();i++) {
 					Solution sRandomNeighbour = pb.getSolution();
-					sRandomNeighbour.randomSetValues(pb, generator);
+					try {
+						sRandomNeighbour.randomSetValues(pb, generator);
+					} catch (Exception e) {
+						e.getMessage();
+					}
 					sNeighbours.add(sRandomNeighbour);
 				}
 				
-				
+				Solution sBestSolution = sSolutionCurrent;
 				//evaluation des meilleurs voisins
 				for (i=0; i<sNeighbours.size();i++) {
-					if((sNeighbours.get(i).evaluatePerf(pb))>sbestSolution.evaluatePerf(pb)&&(!listTabou.contains(sNeighbours.get(i)))) {
-						
-						sbestSolution = sNeighbours.get(i);
-						
+					if((sNeighbours.get(i).evaluatePerf(pb))>sBestSolution.evaluatePerf(pb)&&(!listTabou.contains(sNeighbours.get(i)))) {
+
+						sBestSolution = sNeighbours.get(i);
 					}
 				}
-				
-				long lStartTime = System.nanoTime();
-				sbestSolution.evaluate(pb);
-				double dHyperVolume = sbestSolution.evaluatePerf(pb);
-				long lEstimatedTime = System.nanoTime() - lStartTime;
-				long lTemps = lEstimatedTime / 1000000;
-				evolutionHypervolum.add(dHyperVolume);
+				long lTemps = (System.nanoTime() - lStartTime) / 1000000;
 				evolutionTime.add(lTemps);
-				
+
+
 				//selection du meilleur voisin t
-				bestSolutions.addSolutionIfIsParetoFrontSolution(sbestSolution);
+				bestSolutions.addSolutionIfIsParetoFrontSolution(sBestSolution);
 				//insertion du mouvement t dans la liste tabou
-				listTabou.add(sbestSolution);
+				listTabou.add(sBestSolution);
 				//nouvelle configuration s = t
-				solutionCurrent = sbestSolution;
+				sSolutionCurrent = sBestSolution;
+
+				List<Solution> newSolution = new ArrayList<>();
+				newSolution.add(sBestSolution);
 				
 				iNbIteration--;
-				
-				updateAndSave(listTabou,lTemps);
-				
+
+				try {
+					updateAndSave(newSolution,lTemps);
+				} catch (IOException e) {
+					e.getMessage();
+				}
+
 			}
-		} catch (Exception e) {
-			e.getMessage();
-		}	
+
   	
     }
 }
