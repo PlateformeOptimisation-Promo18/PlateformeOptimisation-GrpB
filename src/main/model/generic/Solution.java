@@ -1,21 +1,45 @@
-package main.model.generic;
+package model.generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import main.model.problemes.Probleme;
-
+/**
+ * Classe générique pour une solution d'un problème
+ * normalement les algos ne font référence qu'à cette classe 
+ * pour manipuler les solutions
+ * @author p.pitiot
+ *
+ */
 public abstract class Solution {
 
-	protected int[] valueVariables;
-	protected List<Double> valuesObjectives;
-	protected List<Double> valuesObjectivesNormalized;
-	protected double hypervolum = 0.0;
+	protected int[] valueVariables;   // tableau des valeurs de variables correspondant à la solution
+									  // soit remplit aléatoirement avec RandomSetValues 
+									  // soit à la main avec setValues
+	protected List<Double> valuesObjectives;     // objectifs -> calculés par la méthode évaluer (méthode evaluate())
+	protected List<Double> valuesObjectivesNormalized;  // normalisation objectif -> en % par rapport aux min/max
+	protected double hypervolum = 0.0;  // double correspondant à la performance d'une solution
+										// calculé à partir des objectifs ou des objectifs normalisés
 	
-	public abstract void evaluate(Probleme pb);
-	public abstract void randomSetValues(Probleme pb, InterfaceRandom generator) throws Exception;
-	public Solution(Probleme gp) {
+	/**
+	 * méthode à concrétiser pour l'évaluation d'une solution -> calcul les valeurs pour les objectifs 
+	 * pré-requis : il faut que le tableau valueVariables soit rempli
+	 * @param pb
+	 */
+	public abstract void evaluate(Problem pb);
+	/**
+	 * méthode à concrétiser pour le tirage aléatoire du tableau valueVariables
+	 * @param pb
+	 * @param generator référence vers un objet générateur de nombre, permet de mocker le génrateur
+	 * @throws Exception
+	 */
+	public abstract void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception;
+	
+	/**
+	 * constructeur de solution selon le problème correspondant donné en paramètre
+	 * @param gp
+	 */
+	public Solution(Problem gp) {
 		int iNbObjectives = gp.getNbObjectives();
 		valuesObjectives = new ArrayList<>(iNbObjectives);
 		for (int i = 0; i < iNbObjectives; i++)
@@ -28,6 +52,11 @@ public abstract class Solution {
 		// we initially fill solution with 0
 		Arrays.fill(valueVariables, 0);
 	}
+	
+	/**
+	 * constructeur par copie d'une solution existante
+	 * @param sol
+	 */
 	public Solution(Solution sol) {
 		valuesObjectives = new ArrayList<>();
 		List<Double> listOriginal = sol.getValueObjective();
@@ -46,7 +75,7 @@ public abstract class Solution {
 		}
 		hypervolum = sol.getHypervolum();
 	}
-	protected double getHypervolum() {
+	public double getHypervolum() {
 		return hypervolum;
 	}
 	private List<Double> getValuesObjectivesNormalized() {
@@ -74,22 +103,26 @@ public abstract class Solution {
 	public int getValueVariable(int iIndexVariable) {
 		return valueVariables[iIndexVariable];
 	}
-	public double evaluatePerf(Probleme pb) {
+	/**
+	 * méthode qui évalue (calcul des valeurs des objectifs) + 
+	 * calcul l'hypervolume (addition des valeurs normalisées d'objectifs)
+	 * @param pb
+	 * @return la valeur de l'hypervolume calculé
+	 */
+	public double evaluatePerf(Problem pb) {
 		evaluate(pb);
 		computeNormalizedObjective(pb);
 		hypervolum = valuesObjectivesNormalized.get(0);
 		for (int i = 1; i < valuesObjectives.size(); i++) {
-			hypervolum *= valuesObjectivesNormalized.get(i);
+			hypervolum += valuesObjectivesNormalized.get(i);
 		}
 		return hypervolum;
 	}
-	protected void computeNormalizedObjective(Probleme pb) {
-		for (int i = 0; i < valuesObjectives.size(); i++) {
-			valuesObjectivesNormalized.set(i,
-					(pb.getMaxObjectif(i) - valuesObjectives.get(i)) / (pb.getMaxObjectif(i) - pb.getMinObjectif(i)));
-		}
-
+	
+	protected void computeNormalizedObjective(Problem pb) {
+		// to do ticket
 	}
+	
 	public boolean isDomined(Solution currentSolution) {
 		for (int i = 0; i < valuesObjectives.size(); i++) {
 			if (currentSolution.getValueObjective(i) > valuesObjectives.get(i))
@@ -131,13 +164,17 @@ public abstract class Solution {
 		if (valuesObjectives == null) {
 			if (other.valuesObjectives != null)
 				return false;
-		} else if (!valuesObjectives.equals(other.valuesObjectives))
-			return false;
+		} else {
+			if (!valuesObjectives.equals(other.valuesObjectives))
+				return false;
+		}
 		if (valuesObjectivesNormalized == null) {
 			if (other.valuesObjectivesNormalized != null)
 				return false;
-		} else if (!valuesObjectivesNormalized.equals(other.valuesObjectivesNormalized))
-			return false;
+		} else {
+			if (!valuesObjectivesNormalized.equals(other.valuesObjectivesNormalized))
+				return false;
+		}
 		if (!Arrays.equals(valueVariables, other.valueVariables))
 			return false;
 		return true;
