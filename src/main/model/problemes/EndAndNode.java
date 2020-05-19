@@ -9,11 +9,11 @@ public class EndAndNode extends Node {
 	}
 		
 	protected int getiIdBeginAndNode() {
-			
+			return iIdBeginAndNode;
 	}
 		
 	protected void setiIdBeginAndNode(int iBeginAndNode) {
-			
+			this.iIdBeginAndNode = iBeginAndNode;
 	}
 		
 	public String toString() {

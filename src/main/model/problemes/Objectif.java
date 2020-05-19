@@ -19,18 +19,18 @@ public class Objectif {
 	}
 	
 	protected double getdMaximumValue() {
-		
+		return dMaximumValue;
 	}
 	
 	protected double getdMinimalValue() {
-		
+		return dMinimalValue;
 	}
 	
 	protected void setdMaximumValue(double dMaximumValue) {
-		
+		this.dMaximumValue = dMaximumValue;
 	}
 	
 	protected void setdMinimalValue(double dMinimalValue) {
-		
+		this.dMinimalValue = dMinimalValue;
 	}
 }

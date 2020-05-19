@@ -13,6 +13,6 @@ public class AndNode extends Node {
 	}
 	
 	protected void setiIdEndAndNode(int iIdEndAndNode) {
-		
+		this.iIdEndAndNode = iIdEndAndNode;
 	}
 }

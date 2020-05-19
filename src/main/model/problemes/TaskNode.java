@@ -13,11 +13,11 @@ public class TaskNode extends Node {
 	}
 	
 	protected int getiIdTask() {
-		
+		return iIdTask;
 	}
 	
 	protected void setiIdTask(int iIdTask) {
-		
+		this.iIdTask = iIdTask;
 	}
 	
 	public String toString() {
@@ -37,7 +37,7 @@ public class TaskNode extends Node {
 	}
 	
 	public List<Resource> getListResourcesofSelectedAlternative(int iSelectedTaskNodeAlternative){
-		
+		return listAlternatives(iSelectedTaskNodeAlternative);
 	}
 	
 	public Alternative getAlternativeExtremum(boolean bIsMinCalculated) {
@@ -49,7 +49,7 @@ public class TaskNode extends Node {
 	}
 	
 	public int getNbAlternatives() {
-		
+		return listAlternatives.size();
 	}
 }
 

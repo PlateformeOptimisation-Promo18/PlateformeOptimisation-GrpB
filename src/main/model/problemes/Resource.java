@@ -6,11 +6,11 @@ public class Resource implements Cloneable {
 	protected double dQuantity;
 	
 	public int getiIdResource() {
-		
+		return iIdResource;
 	}
 	
 	public double getdQuantity() {
-		
+		return dQuantity;
 	}
 	
 	public Resource(Scanner sc) {
@@ -26,11 +26,11 @@ public class Resource implements Cloneable {
 	}
 	
 	public void removeQuantity(double dQuantity) {
-		
+		this.dQuantity -= dQuantity;
 	}
 	
 	public void addQuantity(double dQuantity) {
-		
+		this.dQuantity += dQuantity;
 	}
 	
 	protected Resource clone() {

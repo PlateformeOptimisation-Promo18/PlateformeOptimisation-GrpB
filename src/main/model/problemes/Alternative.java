@@ -20,7 +20,7 @@ public class Alternative{
 	}
 	
 	public List<Resource> getListResources() {
-		
+		return listResources;
 	}
 	
 	public void addResources (Resource resource) {

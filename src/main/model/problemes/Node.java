@@ -11,11 +11,11 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	public int getiIdNode() {
-		
+		return iIdNode;
 	}
 	
 	protected void setiIdNode(int iIdNode) {
-		
+		this.iIdNode = iIdNode;
 	}
 	
 	protected void setNextNode(int iNumNext) {
@@ -35,7 +35,7 @@ public abstract class Node implements Comparable<Node>{
 	}
 
 	public List<Integer> getListNexts(){
-		
+		return listNexts;
 	}
 	
 	public int compareTo(Node o) {
@@ -43,14 +43,14 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	public int getNbNexts() {
-		
+		return listNexts.size();
 	}
 	
 	public int getNbPrevious() {
-		
+		return listPrevious.size();
 	}
 	
 	public int getNext(int i) {
-		
+		return listNexts(i);
 	}
 }
