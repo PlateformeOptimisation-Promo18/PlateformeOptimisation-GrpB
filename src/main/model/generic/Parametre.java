@@ -2,9 +2,10 @@ package main.model.generic;
 
  /**
  * Cette classe doit être utilisée pour réaliser le paramétrage des algorithmes.
-  * Elle sert également à l'IHM, pour savoir quels sont les paramètres à demander à l'utilisateur.
+ * Elle sert également à l'IHM, pour savoir quels sont les paramètres à demander à l'utilisateur.
+ * un param�tre est une valeur num�rique (classe Number) et un label (string) pour l'affichage
+ * @author p.pitiot
  **/
-
 public class Parametre {
     private Number value;
     private String name;
