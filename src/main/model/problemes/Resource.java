@@ -16,7 +16,8 @@ public class Resource implements Cloneable {
 	}
 	
 	public Resource(Scanner sc) {
-		
+		iIdResource = sc.nextInt();
+		dQuantity = sc.nextDouble();
 	}
 	
 	public Resource(Scanner sc, GraphProject gp) throws Exception {

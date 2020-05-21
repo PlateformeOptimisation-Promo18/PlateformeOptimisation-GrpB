@@ -1,5 +1,6 @@
 package main.model.problemes;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,13 @@ public class TaskNode extends Node {
 	protected String sName;
 	
 	public TaskNode(Scanner sc, GraphProject graph) {
-		
+		super();
+		sName = sc.next();
+		iIdTask = sc.nextInt();
+		listAlternatives = new ArrayList<Alternative>();
+		for(int i=0; i<sc.nextInt(); i++) {
+			listAlternatives.add(new Alternative(sc, graph));
+		}
 	}
 	
 	protected int getiIdTask() {

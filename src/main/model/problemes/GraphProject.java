@@ -1,39 +1,88 @@
 package main.model.problemes;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
 public class GraphProject implements Problem {
 
-    private String name;
+    private String sName;
+    protected List<Node> projectGraph;
+    protected List<Resource> listInitialResources;
+    protected List<Objectif> listObjectives;
+    protected int iNbAndNode;
+    protected int iNbOrNode;
+    protected int iNbTaskNode;
 
     public GraphProject (String text) {
-        this.name = text;
-        // TODO Auto-generated method stub
+    	projectGraph = new ArrayList<Node>();
+    	listInitialResources = new ArrayList<Resource>();
+    	listObjectives = new ArrayList<Objectif>();
+    	Path fic = Paths.get(System.getProperty("user.dir"), "gpTest.prj");
+		try (Scanner sc = new Scanner(fic)) {
+			sc.useLocale(Locale.FRENCH);
+			sName = sc.next();
+			for(int i=0; i<sc.nextInt();i++) {
+				listObjectives.add(new Objectif(sc));
+			}
+			for(int i=0; i<sc.nextInt();i++) {
+				listInitialResources.add(new Resource(sc));
+			}
+			iNbTaskNode = sc.nextInt();
+			for(int i=0; i<iNbTaskNode; i++) {
+				TaskNode tn = new TaskNode(sc, this);
+				projectGraph.add(tn.getiIdTask(), tn);
+			}
+			iNbOrNode = sc.nextInt();
+			for(int i=0; i<iNbOrNode; i++) {
+				OrNode on = new OrNode(sc);
+				projectGraph.add(on.getiIdOrNode(), on);
+				on.getiIdEndOrNode();
+			}
+			iNbAndNode = sc.nextInt();
+			for(int i=0; i<iNbAndNode; i++) {
+				AndNode an = new AndNode(sc);
+				//projectGraph.add(an.getiIdAndNode(), an);
+				//an.getiIdEndAndNode();
+			}
+			for(int i=0; i<sc.nextInt(); i++) {
+				Node n = projectGraph.get(sc.nextInt());
+				for(int j=0; j<sc.nextInt(); j++) {
+					int id = sc.nextInt();
+					n.setNextNode(id);
+					projectGraph.get(sc.nextInt()).setPreviousNode(n.iIdNode);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     public String getName () {
-        return this.name;
+        return this.sName;
     }
 
     public int getNbOr () {
-        // TODO Auto-generated method stub
-        return 0;
+    	return iNbOrNode;
     }
 
     public int getNbTasks () {
-        // TODO Auto-generated method stub
-        return 0;
+        return iNbTaskNode;
     }
 
     public int getNbResources () {
-        // TODO Auto-generated method stub
-        return 0;
+        return listInitialResources.size();
     }
 
     public int getNbAnd () {
-        // TODO Auto-generated method stub
-        return 0;
+        return iNbAndNode;
     }
 
     @Override
@@ -68,13 +117,11 @@ public class GraphProject implements Problem {
 
     @Override
     public int getNbObjectives() {
-        // TODO Auto-generated method stub
-        return 0;
+        return listObjectives.size();
     }
 
     @Override
     public int getNbVariables() {
-        // TODO Auto-generated method stub
         return 0;
     }
 

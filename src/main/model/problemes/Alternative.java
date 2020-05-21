@@ -1,5 +1,6 @@
 package main.model.problemes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +11,15 @@ public class Alternative{
 	protected List<Resource> listResources;
 	
 	public Alternative(Scanner sc, GraphProject graph) {
-		
+		sName = sc.next();
+		listValueOfObjectif = new ArrayList<Double>();
+		listResources = new ArrayList<Resource>();
+		for(int i = 0; i<graph.getNbObjectives(); i++) {
+			listValueOfObjectif.add(sc.nextDouble());
+		}
+		for(int i = 0; i<sc.nextInt(); i++) {
+			listResources.add(new Resource(sc));
+		}
 	}
 	
 	public String toString() {

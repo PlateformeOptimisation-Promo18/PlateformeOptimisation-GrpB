@@ -1,5 +1,6 @@
 package main.model.problemes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node implements Comparable<Node>{
@@ -9,7 +10,8 @@ public abstract class Node implements Comparable<Node>{
 	List<Integer> listPrevious;
 	
 	public Node() {
-		
+		listNexts = new ArrayList<Integer>();
+		listPrevious = new ArrayList<Integer>();
 	}
 	
 	public int getiIdNode() {
@@ -21,11 +23,11 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	protected void setNextNode(int iNumNext) {
-		
+		listNexts.add(iNumNext);
 	}
 	
 	protected void setPreviousNode(int iNumNext) {
-		
+		listPrevious.add(iNumNext);
 	}
 	
 	protected List<Integer> getCopyListPrevious(){

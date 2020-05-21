@@ -8,7 +8,8 @@ public class OrNode extends Node {
 	protected int iIdOrNode;
 	
 	public OrNode(Scanner sc) {
-		
+		iIdOrNode = sc.nextInt();
+		iIdEndOrNode = sc.nextInt();
 	}
 	
 	protected int getiIdEndOrNode() {

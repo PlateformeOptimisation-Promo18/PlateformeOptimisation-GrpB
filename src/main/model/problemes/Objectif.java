@@ -13,7 +13,7 @@ public class Objectif {
 	}
 	
 	public Objectif(Scanner sc) {
-		
+		sName = sc.next();
 	}
 	
 	protected void FLoad(Scanner sc) {
