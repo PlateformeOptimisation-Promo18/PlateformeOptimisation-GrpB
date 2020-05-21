@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.Scanner;
 
 public class Resource implements Cloneable {
@@ -34,6 +36,6 @@ public class Resource implements Cloneable {
 	}
 	
 	protected Resource clone() {
-		
+		return null;
 	}
 }

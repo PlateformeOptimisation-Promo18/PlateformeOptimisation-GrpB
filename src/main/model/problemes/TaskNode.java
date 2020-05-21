@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -21,31 +23,31 @@ public class TaskNode extends Node {
 	}
 	
 	public String toString() {
-		
+		return "";
 	}
 	
 	public double getCost(int iSelectedTaskNodeAlternative) {
-		
+		return 0.0;
 	}
 	
 	public double getDuration(int iSelectedTaskNodeAlternative) {
-		
+		return 0.0;
 	}
 	
 	public boolean isResourcesAvailable(List<Resource> listAvailableResources, int iSelectedTaskNodeAlternative) {
-		
+		return false;
 	}
 	
 	public List<Resource> getListResourcesofSelectedAlternative(int iSelectedTaskNodeAlternative){
-		return listAlternatives(iSelectedTaskNodeAlternative);
+		return listAlternatives.get(iSelectedTaskNodeAlternative).getListResources();
 	}
 	
 	public Alternative getAlternativeExtremum(boolean bIsMinCalculated) {
-		
+		return null;
 	}
 	
 	public boolean isResourcesAvailable(List<Resource> listAvailableResources, boolean bIsMinCalculated) {
-		
+		return false;
 	}
 	
 	public int getNbAlternatives() {
@@ -55,12 +57,12 @@ public class TaskNode extends Node {
 
 class ComparatorAlternativeDuration implements Comparator<Alternative>{
 	public int compare(Alternative alt1, Alternative alt2) {
-		
+		return 0;
 	}
 }
 
 class ComparatorAlternativeCost implements Comparator<Alternative>{
 	public int compare(Alternative alt1, Alternative alt2) {
-		
+		return 0;
 	}
 }

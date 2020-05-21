@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,16 +9,16 @@ public class Alternative{
 	protected List<Double> listValueOfObjectif;
 	protected List<Resource> listResources;
 	
-	public Alternative(Scanner sc, GraphProjet graph) {
+	public Alternative(Scanner sc, GraphProject graph) {
 		
 	}
 	
 	public String toString() {
-		
+		return "";
 	}
 	
 	public String getName() {
-		
+		return "";
 	}
 	
 	public List<Resource> getListResources() {
@@ -28,14 +30,14 @@ public class Alternative{
 	}
 	
 	public double getCost() {
-		
+		return 0.0;
 	}
 	
 	public double getDuration() {
-		
+		return 0.0;
 	}
 	
-	public boolean isResourcesAvailable(List<Resources> listAvailableResources) {
-		
+	public boolean isResourcesAvailable(List<Resource> listAvailableResources) {
+		return false;
 	}
 }

@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.List;
 
 public abstract class Node implements Comparable<Node>{
@@ -27,11 +29,11 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	protected List<Integer> getCopyListPrevious(){
-		
+		return null;
 	}
 	
 	public List<Integer> getCopyListNexts(){
-		
+		return null;
 	}
 
 	public List<Integer> getListNexts(){
@@ -39,7 +41,7 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	public int compareTo(Node o) {
-		
+		return 0;
 	}
 	
 	public int getNbNexts() {
@@ -51,6 +53,6 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	public int getNext(int i) {
-		return listNexts(i);
+		return listNexts.get(i);
 	}
 }

@@ -1,3 +1,7 @@
+package main.model.problemes;
+
+import java.util.Scanner;
+
 public class OrNode extends Node {
 	
 	protected int iIdEndOrNode;
@@ -24,6 +28,6 @@ public class OrNode extends Node {
 	}
 	
 	public String toString() {
-		
+		return "";
 	}
 }

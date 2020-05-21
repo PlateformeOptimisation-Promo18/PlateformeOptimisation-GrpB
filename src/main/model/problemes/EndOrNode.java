@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.Scanner;
 
 public class EndOrNode extends Node {
@@ -17,6 +19,6 @@ public class EndOrNode extends Node {
 	}
 		
 	public String toString() {
-			
+		return "";
 	}
 }

@@ -1,3 +1,5 @@
+package main.model.problemes;
+
 import java.util.Scanner;
 
 public class Objectif {
@@ -7,7 +9,7 @@ public class Objectif {
 	protected double dMinimalValue;
 	
 	public String toString() {
-		
+		return "";
 	}
 	
 	public Objectif(Scanner sc) {
