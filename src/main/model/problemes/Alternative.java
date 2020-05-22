@@ -18,16 +18,23 @@ public class Alternative{
 			listValueOfObjectif.add(sc.nextDouble());
 		}
 		for(int i = 0; i<sc.nextInt(); i++) {
-			listResources.add(new Resource(sc));
+			addResources(new Resource(sc));
 		}
 	}
 	
 	public String toString() {
-		return "";
+		String msg = "Name: " + sName + "; ";
+		for(int i=0; i<listValueOfObjectif.size(); i++) {
+			msg += "Objective " + (i+1) + ": " + listValueOfObjectif.get(i) +"; ";
+		}
+		for(int i=0; i<listResources.size(); i++) {
+			msg += "Resource " + i + ": " + listResources.get(i) +"; ";
+		}
+		return msg;
 	}
 	
 	public String getName() {
-		return "";
+		return sName;
 	}
 	
 	public List<Resource> getListResources() {
@@ -35,15 +42,15 @@ public class Alternative{
 	}
 	
 	public void addResources (Resource resource) {
-		
+		listResources.add(resource);
 	}
 	
 	public double getCost() {
-		return 0.0;
+		return listValueOfObjectif.get(0);
 	}
 	
 	public double getDuration() {
-		return 0.0;
+		return listValueOfObjectif.get(1);
 	}
 	
 	public boolean isResourcesAvailable(List<Resource> listAvailableResources) {

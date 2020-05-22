@@ -30,15 +30,19 @@ public class TaskNode extends Node {
 	}
 	
 	public String toString() {
-		return "";
+		String msg = "Name: " + sName + "; IdTask: " + iIdTask + "; ";
+		for(int i=0; i<listAlternatives.size(); i++) {
+			msg += "Alternative " + (i+1) + ": "+listAlternatives.get(i) + "; ";
+		}
+		return msg;
 	}
 	
 	public double getCost(int iSelectedTaskNodeAlternative) {
-		return 0.0;
+		return listAlternatives.get(iSelectedTaskNodeAlternative).getCost();
 	}
 	
 	public double getDuration(int iSelectedTaskNodeAlternative) {
-		return 0.0;
+		return listAlternatives.get(iSelectedTaskNodeAlternative).getDuration();
 	}
 	
 	public boolean isResourcesAvailable(List<Resource> listAvailableResources, int iSelectedTaskNodeAlternative) {

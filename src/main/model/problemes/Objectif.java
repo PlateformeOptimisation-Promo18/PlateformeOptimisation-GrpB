@@ -9,7 +9,7 @@ public class Objectif {
 	protected double dMinimalValue;
 	
 	public String toString() {
-		return "";
+		return "Name: " + sName + "; Maximum value: " + dMaximumValue + "; Minimal value: " + dMinimalValue;
 	}
 	
 	public Objectif(Scanner sc) {

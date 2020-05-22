@@ -19,6 +19,6 @@ public class EndAndNode extends Node {
 	}
 		
 	public String toString() {
-		return "";
+		return "Id Begin And Node: " + iIdBeginAndNode + ";";
 	}
 }

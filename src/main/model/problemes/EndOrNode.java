@@ -19,6 +19,6 @@ public class EndOrNode extends Node {
 	}
 		
 	public String toString() {
-		return "";
+		return "Id Begin Or Node: " + iIdBeginOrNode + ";";
 	}
 }

@@ -7,7 +7,7 @@ public class AndNode extends Node {
 	protected int iIdEndAndNode;
 	
 	public String toString() {
-		return "";
+		return "Id End And Node: " + iIdEndAndNode + ";";
 	}
 	
 	public AndNode(Scanner sc) {
