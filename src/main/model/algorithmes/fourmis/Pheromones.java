@@ -1,7 +1,7 @@
 package main.model.algorithmes.fourmis;
 
+import main.model.generic.Problem;
 import main.model.generic.Solution;
-import main.model.problemes.Problem;
 
 import java.util.List;
 
@@ -21,7 +21,9 @@ public class Pheromones {
     public Pheromones(){}
 
     //TODO
-    public void nouvelleFourmi(){}
+    public Fourmi nouvelleFourmi(){
+        return null;
+    }
 
     //TODO
     public void evaporer(double quantiteEvaporation){
