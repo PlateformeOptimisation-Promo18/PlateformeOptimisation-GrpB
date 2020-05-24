@@ -44,13 +44,13 @@ public class GraphProject implements Problem {
 			for(int i=0; i<iNbOrNode; i++) {
 				OrNode on = new OrNode(sc);
 				projectGraph.add(on.getiIdOrNode(), on);
-				on.getiIdEndOrNode();
+				projectGraph.add(on.getiIdEndOrNode(), new EndOrNode(on.getiIdEndOrNode(), on.getiIdOrNode()));
 			}
 			iNbAndNode = sc.nextInt();
 			for(int i=0; i<iNbAndNode; i++) {
 				AndNode an = new AndNode(sc);
-				//projectGraph.add(an.getiIdAndNode(), an);
-				//an.getiIdEndAndNode();
+				projectGraph.add(an.getiIdAndNode(), an);
+				projectGraph.add(an.getiIdEndAndNode(), new EndAndNode(an.getiIdEndAndNode(), an.getiIdAndNode()));
 			}
 			for(int i=0; i<sc.nextInt(); i++) {
 				Node n = projectGraph.get(sc.nextInt());
