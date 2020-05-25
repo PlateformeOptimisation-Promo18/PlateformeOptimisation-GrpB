@@ -13,11 +13,11 @@ public class Objectif {
 	}
 	
 	public Objectif(Scanner sc) {
-		sName = sc.next();
+		this.FLoad(sc);
 	}
 	
 	protected void FLoad(Scanner sc) {
-		
+		sName = sc.next();
 	}
 	
 	protected double getdMaximumValue() {
