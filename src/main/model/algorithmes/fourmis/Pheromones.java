@@ -4,12 +4,26 @@ import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
+import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Classe servant à reproduire les phéromones des fourmis en récompensant les meilleurs fourmis
+ * (ajout de phéromone sur le chemin) et en reproduisant l'évaporation des phéromones. Elle sera
+ * manipulée par l'algorithme des fourmis.
+ * @author jade panchaud
+ *
+ */
 
 public class Pheromones {
 
     private List<double[]> tracePheromones;
+    //j'ai choisis cette structure de donnée car elle me semble plus évidente pour
+    //se représenter les choix des fourmis. On a la liste, représentant tous les chemins, et chaque tableau
+    //représente un choix entre différents chemins.
 
+
+    //-----------------GETTER ET SETTER POUR TESTS UNIQUEMENT----------------------------
     public void setTracePheromones(List<double[]> tracePheromones) {
         this.tracePheromones = tracePheromones;
     }
@@ -17,12 +31,30 @@ public class Pheromones {
     public List<double[]> getTracePheromones() {
         return tracePheromones;
     }
-
-    //TODO
-    public Pheromones(){}
+    //------------------------------------------------------------------------------------
 
     /**
-     *
+     * Ce constructeur permet d'initialiser le tableau de phéromones.
+     * A l'état initial, les phéromones, ou probabilité de passer sur un chemin,
+     * est la même entre un nombre n de choix (choix entre 3 chemins : 1/3 de phéromones
+     * sur chacun d'entre eux).
+     */
+    public Pheromones(Problem problem){
+        this.tracePheromones = new ArrayList<>();
+
+        for (int i = 0; i < problem.getTabSizeDomainVariables().length; i++){
+            int tailleChoix = problem.getTabSizeDomainVariables()[i];
+            double[] choix = new double[tailleChoix];
+
+            for(int j = 0; j < tailleChoix; j++){
+                choix[j] = 1/(tailleChoix*1.0);
+            }
+            this.tracePheromones.add(choix);
+        }
+    }
+
+    /**
+     *Cette méthode permet d'initialiser une fourmis, alias une solution.
      * @param fourmis
      * @param random
      */

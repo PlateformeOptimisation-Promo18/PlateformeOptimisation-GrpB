@@ -5,12 +5,13 @@ import main.model.algorithmes.fourmis.Pheromones;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 import main.model.problemes.GraphProject;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class PheromonesTest {
@@ -20,7 +21,7 @@ class PheromonesTest {
 
     @BeforeEach
     void setUp(){
-        pheromones = new Pheromones();
+        pheromones = new Pheromones(problem);
         List<double[]> pheromoneTrails = new LinkedList<>();
         double[] tab2 = {0.5,0.5};
         double[] tab3 = {1/3, 1/3, 1/3};
