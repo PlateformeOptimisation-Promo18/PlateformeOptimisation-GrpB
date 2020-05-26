@@ -1,8 +1,8 @@
 package main.model.algorithmes.fourmis;
 
 import main.model.generic.InterfaceRandom;
+import main.model.generic.Problem;
 import main.model.generic.Solution;
-import main.model.problemes.Probleme;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class Pheromones {
      * @param fourmis une des solutions au problème, que l'on veut récompenser car l'une des meilleures.
      * @param quantitePheromone la quantité de phéromone à rajouter sur le chemin.
      */
-    public void recompenser(Probleme problem, Solution fourmis, double quantitePheromone) {
+    public void recompenser(Problem problem, Solution fourmis, double quantitePheromone) {
         boolean[] variablesActives = problem.GetActiveVariable(fourmis);
         int i = 0;
 

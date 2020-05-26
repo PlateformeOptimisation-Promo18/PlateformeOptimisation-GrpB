@@ -1,27 +1,24 @@
 package main.model.algorithmes.fourmis;
 
-import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
-import main.model.generic.InterfaceRandom;
-import main.model.generic.StopRequired;
-import main.model.generic.Problem;
+import main.model.generic.*;
 
-public class Fourmis extends CombinatorialMultiObjectiveOptimizationAlgorithm {
+public class Fourmis extends Solution {
 
-    /**
-     * Constructeur initialisant les propriétés génériques des algos
-     * doit être appelé par les constructeurs des classes d'algorithmes
-     *
-     * @param pb
-     * @param stop          objet écouteur arrêt utilisateur
-     * @param algorithmName nom de l'algorithme pour l'affichage et la sauveguarde des résulats
-     */
-    public Fourmis(Problem pb, StopRequired stop, String algorithmName) {
-        super(pb, stop, algorithmName);
+    public Fourmis(Problem gp) {
+        super(gp);
+    }
+
+    public Fourmis(Solution sol) {
+        super(sol);
     }
 
     @Override
-    public void launch(Problem pb, InterfaceRandom generator) {
+    public void evaluate(Problem pb) {
 
     }
 
+    @Override
+    public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
+
+    }
 }
