@@ -3,6 +3,7 @@ package main.model.algorithmes.fourmis;
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
+import main.utils.TrueRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +63,10 @@ public class Pheromones {
      *
      * Pré-requis : le tableau de traces a été initialisé.
      *
-     * @param fourmis
-     * @param random
      */
-    public void nouvelleFourmi(Fourmis fourmis, InterfaceRandom random){
+    public Fourmi nouvelleFourmi(Problem problem){
+        InterfaceRandom random = new TrueRandom();
+        Fourmi fourmi = new Fourmi(problem);
 
         for (double[] choix : tracePheromones) {
             int tailleChoix = choix.length - 1;
@@ -85,6 +86,7 @@ public class Pheromones {
                 tailleChoix--;
             }
         }
+        return fourmi;
     }
 
     /**

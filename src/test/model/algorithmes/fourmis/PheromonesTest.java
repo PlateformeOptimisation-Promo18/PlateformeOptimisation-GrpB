@@ -1,6 +1,6 @@
 package test.model.algorithmes.fourmis;
 
-import main.model.algorithmes.fourmis.Fourmis;
+import main.model.algorithmes.fourmis.Fourmi;
 import main.model.algorithmes.fourmis.Pheromones;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PheromonesTest {
     Pheromones pheromones;
     Problem problem;
-    Solution fourmis;
+    Solution fourmi;
 
     @BeforeEach
     void setUp(){
@@ -32,13 +32,13 @@ class PheromonesTest {
         pheromones.setTracePheromones(pheromoneTrails);
 
         problem = new GraphProject("Test");
-        fourmis = new Fourmis(problem);
+        fourmi = new Fourmi(problem);
 
     }
 
     @Test
     void pheromonesTrails_should_have_ant_way_up_of_01(){
-        pheromones.recompenser(problem, fourmis, 0.1);
+        pheromones.recompenser(problem, fourmi, 0.1);
     }
 
     @Test
