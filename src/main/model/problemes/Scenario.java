@@ -11,19 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-/*
-     * Cette classe ne devrait plus avoir d'erreurs lorsque les classes suivantes auront été créées :
-     * 	- Resource
-     *  - ResourcesPlanned
-     *  - PlannedNode
-     *  - SharedEnvironmentForPlanification
-     *  - Node
-     *  - OrNode
-     *  - TaskNode
-     *  
-     *  Ligne 51: il faut trouver le nom de la dernière méthode à appeler
-     */
-
+/**
+ * Classe Scenario
+ * @author Axel Serieys
+ *
+ */
 public class Scenario extends Solution {
 
     public Scenario(GraphProject gp) {
@@ -90,17 +82,9 @@ public class Scenario extends Solution {
     	computeNormalizedObjective(gpTest);
     }
 
-    /*private void taskProcessing(PlannedNode currentNode, SharedEnvironmentForPlanification envir) {}
-    private void planResourceTask(Collection<ResourcesPlanned> listResourcesPlanned, List<Resource> listAvailableResources, TaskNode task, int iSelectedTaskNodeAlternative, double dBeginningDate) {}
-    private void updateNextNodes(List<PlannedNode> listNodeToPlan, PlannedNode plannedNode) {}
-    private void removeUnselectedBranch(List<PlannedNode> listNodeToPlan, GraphProject gp, OrNode orNode, int iIdNodeSelectedAlternative) {}
-    private PlannedNode searchForNodeWithoutPreviousNodeAndWithAvailableResources(List<PlannedNode> listNodeToPlan, List<Resource> listAvailableResources) { return null; }
-    private void initializeListNodeToPlan(List<PlannedNode> listNodeToPlan, GraphProject pb) {}*/
-
 
     @Override
     public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
-        // TODO Auto-generated method stub
 
     }
 }
