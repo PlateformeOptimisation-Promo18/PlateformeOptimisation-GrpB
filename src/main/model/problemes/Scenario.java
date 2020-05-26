@@ -196,7 +196,6 @@ public class Scenario extends Solution {
 
     @Override
     public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
-        // TODO Auto-generated method stub
 
     }
 }
