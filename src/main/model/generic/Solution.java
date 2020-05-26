@@ -3,16 +3,42 @@ package main.model.generic;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Classe générique pour une solution d'un problème
+ * normalement les algos ne font référence qu'à cette classe
+ * pour manipuler les solutions
+ * @author p.pitiot
+ *
+ */
 public abstract class Solution {
 
-	protected int[] valueVariables;
-	protected List<Double> valuesObjectives;
-	protected List<Double> valuesObjectivesNormalized;
-	protected double hypervolum = 0.0;
-	
+	protected int[] valueVariables;  // tableau des valeurs de variables correspondant à la solution
+	// soit remplit aléatoirement avec RandomSetValues
+	// soit à la main avec setValues
+	protected List<Double> valuesObjectives; // objectifs -> calculés par la méthode évaluer (méthode evaluate())
+	protected List<Double> valuesObjectivesNormalized; // normalisation objectif -> en % par rapport aux min/max
+	protected double hypervolum = 0.0; // double correspondant à la performance d'une solution
+	// calculé à partir des objectifs ou des objectifs normalisés
+
+	/**
+	 * méthode à concrétiser pour l'évaluation d'une solution -> calcul les valeurs pour les objectifs
+	 * pré-requis : il faut que le tableau valueVariables soit rempli
+	 * @param pb
+	 */
 	public abstract void evaluate(Problem pb);
+
+	/**
+	 * méthode à concrétiser pour le tirage aléatoire du tableau valueVariables
+	 * @param pb
+	 * @param generator référence vers un objet générateur de nombre, permet de mocker le génrateur
+	 * @throws Exception
+	 */
 	public abstract void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception;
+
+	/**
+	 * constructeur de solution selon le problème correspondant donné en paramètre
+	 * @param gp
+	 */
 	public Solution(Problem gp) {
 		int iNbObjectives = gp.getNbObjectives();
 		valuesObjectives = new ArrayList<>(iNbObjectives);
@@ -72,6 +98,13 @@ public abstract class Solution {
 	public int getValueVariable(int iIndexVariable) {
 		return valueVariables[iIndexVariable];
 	}
+
+	/**
+	 * méthode qui évalue (calcul des valeurs des objectifs) +
+	 * calcul l'hypervolume (addition des valeurs normalisées d'objectifs)
+	 * @param pb
+	 * @return la valeur de l'hypervolume calculé
+	 */
 	public double evaluatePerf(Problem pb) {
 		evaluate(pb);
 		computeNormalizedObjective(pb);
