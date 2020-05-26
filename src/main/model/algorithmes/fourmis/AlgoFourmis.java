@@ -1,6 +1,4 @@
 package main.model.algorithmes.fourmis;
-
-import jdk.nashorn.internal.ir.WhileNode;
 import main.model.generic.*;
 
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
             long lStartTime = System.nanoTime();
             do {
                 for (int i = 0 ; i < iNbAnts ; i++){
-                    Fourmi fourmi = tracePheromones.nouvelleFourmi();
+                    Fourmi fourmi = tracePheromones.nouvelleFourmi(pb);
                     fourmi.evaluate(pb);
                     bestSolutions.addSolutionIfIsParetoFrontSolution(fourmi);
                 }

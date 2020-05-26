@@ -10,6 +10,10 @@ public class Fourmi extends Solution {
         super(sol);
     }
 
+    public Fourmi(Problem problem){
+        super(problem);
+    }
+
 
     @Override
     public void evaluate(Problem pb) {

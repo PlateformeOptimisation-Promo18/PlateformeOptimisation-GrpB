@@ -34,7 +34,7 @@ public class Population implements Observable {
         //TODO :
     }
 
-    public void CalculerDensité() {
+    public void CalculerDensite() {
         //TODO :
     }
 

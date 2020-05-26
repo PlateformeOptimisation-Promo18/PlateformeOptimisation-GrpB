@@ -1,29 +1,45 @@
 package test.model.algorithmes.fourmis;
 
+import main.model.algorithmes.fourmis.Fourmi;
 import main.model.algorithmes.fourmis.Pheromones;
-import org.junit.Before;
+import main.model.generic.Problem;
+import main.model.generic.Solution;
+import main.model.problemes.GraphProject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 class PheromonesTest {
     Pheromones pheromones;
+    Problem problem;
+    Solution fourmi;
+
     @BeforeEach
     void setUp(){
-        pheromones = new Pheromones();
-        List<double[]> setUp = new LinkedList<>();
+        pheromones = new Pheromones(problem);
+        List<double[]> pheromoneTrails = new LinkedList<>();
         double[] tab2 = {0.5,0.5};
-        double[] tab3 = {1/3, 1/3, 0.333};
+        double[] tab3 = {1/3, 1/3, 1/3};
         double[] tab2b = {0.5,0.5};
-        setUp.add(tab2);
-        setUp.add(tab3);
-        setUp.add(tab2b);
-        pheromones.setTracePheromones(setUp);
+        pheromoneTrails.add(tab2);
+        pheromoneTrails.add(tab3);
+        pheromoneTrails.add(tab2b);
+        pheromones.setTracePheromones(pheromoneTrails);
+
+        problem = new GraphProject("Test");
+        fourmi = new Fourmi(problem);
+
     }
 
+    @Test
+    void pheromonesTrails_should_have_ant_way_up_of_01(){
+        pheromones.recompenser(problem, fourmi, 0.1);
+    }
 
     @Test
     void proba_should_equals_1(){
