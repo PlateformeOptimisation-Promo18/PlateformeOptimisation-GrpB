@@ -38,6 +38,10 @@ public class Pheromones {
      * A l'état initial, les phéromones, ou probabilité de passer sur un chemin,
      * est la même entre un nombre n de choix (choix entre 3 chemins : 1/3 de phéromones
      * sur chacun d'entre eux).
+     *
+     * Pré-requis : avoir un problème initialisé.
+     *
+     * @param problem le problème où l'on récupère le nombre de variable ainsi que de tâches
      */
     public Pheromones(Problem problem){
         this.tracePheromones = new ArrayList<>();
@@ -55,17 +59,40 @@ public class Pheromones {
 
     /**
      *Cette méthode permet d'initialiser une fourmis, alias une solution.
+     *
+     * Pré-requis : le tableau de traces a été initialisé.
+     *
      * @param fourmis
      * @param random
      */
     public void nouvelleFourmi(Fourmis fourmis, InterfaceRandom random){
 
+        for (double[] choix : tracePheromones) {
+            int tailleChoix = choix.length - 1;
+            boolean choixFait = false;
+
+            while (tailleChoix > 0 || !choixFait){
+                int choixAleatoire = random.nextInt(1);
+
+                if(choixAleatoire <= choix[tailleChoix]){
+
+                    choixFait = true;
+                }
+
+                if(!choixFait){
+
+                }
+                tailleChoix--;
+            }
+        }
     }
 
     /**
      *Permet de faire s'évaporer les phéromones de la liste tracePheromones. Elle s'effectue après la récompense.
+     *
      * Pré-requis : la liste tracePheromones est instanciée.
-     * @param quantiteEvaporation : quantité de phéromone qui disparait sur l'ensemble des chemins après chaque itération.
+     *
+     *  @param quantiteEvaporation : quantité de phéromone qui disparait sur l'ensemble des chemins après chaque itération.
      */
     public void evaporer(double quantiteEvaporation){
         for (double[] tache: tracePheromones) {
@@ -77,8 +104,10 @@ public class Pheromones {
 
     /**
      *Permet de déposer des phéromones sur le chemin impreinté par une fourmis et ainsi de mettre à jour la liste tracePheromone.
+     *
      * Pré-requis : la fourmis est passée par l'un des chemins du problème, et elle a été sélectionné comme étant l'une des meilleures solutions.
-     * @param problem le probleme sur lequel on cherche des solutions.
+     *
+     *  @param problem le probleme sur lequel on cherche des solutions.
      * @param fourmis une des solutions au problème, que l'on veut récompenser car l'une des meilleures.
      * @param quantitePheromone la quantité de phéromone à rajouter sur le chemin.
      */
@@ -102,7 +131,9 @@ public class Pheromones {
      *  au sein de cette liste (soit un ensemble de choix de chemins), ait la même probabilité totale.
      *Si, lorsque l'on effectue cet ajustement, l'une des probabilités sur les chemins est en dessous de
      * la quantité minimale, alors on lui attribut cette valeur pour ne pas qu'il disparaisse.
+     *
      * Pré-requis : la liste tracePheromones est initialisée.
+     *
      * @param probaTotale la probabilité totale qu'on souhaite pour chaque tâche.
      * @param quantiteMinimalePheromone la quantité de phéromone que l'on souhaite sur un chemin pour ne pas qu'il disparaisse.
      */
