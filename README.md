@@ -1,5 +1,5 @@
 # Réalisation de la plateforme d'optimisation (javaFx) par le groupe B de la promo 18.
-Projet prêt à être cloné, V1.3. (LISEZ LA SUITE DU README)
+Projet prêt à être cloné, V1.4. (LISEZ LA SUITE DU README)
 
 # /!\ Une fois le projet récupéré, pensez à vous créer une branche pour développer, et ne pas faire vos versionning directement sur le master. /!\ #
 Le merge sur la branche master, doit se faire UNIQUEMENT lorsque vos ajouts sont fonctionnels, ce qui signifie de faire passer de nombreux tests (tests unitaires, test d'intégration etc). 
