@@ -31,11 +31,19 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	protected List<Integer> getCopyListPrevious(){
-		return null;
+		List lNew = new ArrayList<Integer>();
+		for(int i=0; i<listPrevious.size(); i++) {
+			lNew.add(listPrevious.get(i));
+		}
+		return lNew;
 	}
 	
 	public List<Integer> getCopyListNexts(){
-		return null;
+		List lNew = new ArrayList<Integer>();
+		for(int i=0; i<listNexts.size(); i++) {
+			lNew.add(listNexts.get(i));
+		}
+		return lNew;
 	}
 
 	public List<Integer> getListNexts(){

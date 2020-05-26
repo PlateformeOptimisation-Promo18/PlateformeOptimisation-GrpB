@@ -25,7 +25,8 @@ public class Resource implements Cloneable {
 	}
 	
 	public Resource(Resource resource) {
-		
+		iIdResource = resource.getiIdResource();
+		dQuantity = resource.getdQuantity();
 	}
 	
 	public void removeQuantity(double dQuantity) {
@@ -37,6 +38,6 @@ public class Resource implements Cloneable {
 	}
 	
 	protected Resource clone() {
-		return null;
+		return new Resource(this);
 	}
 }
