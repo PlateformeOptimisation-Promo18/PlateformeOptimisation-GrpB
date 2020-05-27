@@ -34,12 +34,16 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
 
         List<Parameter> listParam = getParameters();
 
+        bestSolutions.setSet(new ArrayList<>());
+
         int iNbMaxAnts = listParam.get(0).getValue().intValue();
         int iNbAnts = listParam.get(1).getValue().intValue();
         int iNbMaxEliteAnts = listParam.get(2).getValue().intValue();
         double dQuantitePheromoneEvaporation = listParam.get(3).getValue().doubleValue();
         double dQuantitePheromoneAjout = listParam.get(4).getValue().doubleValue();
         double dQuantiteMini = listParam.get(5).getValue().doubleValue();
+
+        tracePheromones = new Pheromones(pb);
 
         try{
             long lStartTime = System.nanoTime();

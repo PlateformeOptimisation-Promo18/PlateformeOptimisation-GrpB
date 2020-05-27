@@ -4,6 +4,7 @@ import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Fourmi extends Solution {
@@ -14,6 +15,9 @@ public class Fourmi extends Solution {
 
     public Fourmi(Problem problem){
         super(problem);
+        valuesObjectives = new ArrayList<>();
+        valuesObjectives.add(0.0);
+        valuesObjectives.add(0.0);
     }
 
     public int[] getValuesVariables() {
