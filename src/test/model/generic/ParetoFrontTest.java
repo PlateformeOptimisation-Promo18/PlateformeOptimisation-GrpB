@@ -1,19 +1,17 @@
 package test.model.generic;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import main.model.generic.ParetoFront;
 import main.model.generic.Solution;
 import main.model.problemes.GraphProject;
 import main.model.problemes.Scenario;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParetoFrontTest extends ParetoFront{
 
@@ -25,7 +23,7 @@ public class ParetoFrontTest extends ParetoFront{
 	private Solution sol2;
 	private Solution sol3;
 
-	@Before
+	@BeforeAll
 	public void setUp() throws Exception {
 		ArrayList<Solution> set = new ArrayList<Solution>();
 		this.pFront = new ParetoFront();
@@ -58,7 +56,7 @@ public class ParetoFrontTest extends ParetoFront{
 		pFront.setSet(set);
 	}
 	
-	@After
+	@AfterAll
 	public void tearDown() throws Exception {
 		this.pFront=null;
 		this.gpt=null;
@@ -93,7 +91,7 @@ public class ParetoFrontTest extends ParetoFront{
 		cluster.add(this.sol1);
 		cluster.add(this.sol2);
 
-		assertTrue(this.pFront.centroide(cluster, this.gpt).equals(this.sol2));
+		assertEquals(this.pFront.centroide(cluster, this.gpt), this.sol2);
 	}
 	
 	@Test
