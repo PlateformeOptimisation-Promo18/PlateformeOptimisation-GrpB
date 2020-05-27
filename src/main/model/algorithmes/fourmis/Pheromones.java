@@ -64,7 +64,7 @@ public class Pheromones {
      * Pré-requis : le tableau de traces a été initialisé.
      *
      */
-    public Fourmi nouvelleFourmi(Problem problem){
+    public Fourmi nouvelleFourmi(Problem problem, InterfaceRandom Random){
         InterfaceRandom random = new TrueRandom();
         Fourmi fourmi = new Fourmi(problem);
 
