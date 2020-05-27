@@ -4,9 +4,8 @@ import main.model.algorithmes.fourmis.Fourmi;
 import main.model.algorithmes.fourmis.Pheromones;
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Solution;
-import main.utils.TrueRandom;
+import main.utils.testRandom;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ class PheromonesTest {
     Pheromones pheromones;
     ProblemMock problem;
     Solution fourmi;
-    InterfaceRandom generator;
+    testRandom generator;
 
     @BeforeEach
     void setUp(){
@@ -25,7 +24,7 @@ class PheromonesTest {
         problem = new ProblemMock(chemin);
         pheromones = new Pheromones(problem);
         fourmi = new Fourmi(problem);
-        generator = new TrueRandom();
+        generator = new testRandom();
 
     }
 
@@ -37,10 +36,9 @@ class PheromonesTest {
 
     @Test
     void new_ant(){
-        int[] chemin = new int[]{0,0,0};
-
+        int[] chemin = new int[]{0,1,2};
+        generator.setDoubles(new double[]{0.5, 0.8, 0.667});
         Fourmi fourmiTest = pheromones.nouvelleFourmi(problem, generator);
-
         Assert.assertArrayEquals(chemin, fourmiTest.getValuesVariables());
     }
 

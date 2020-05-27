@@ -13,4 +13,9 @@ public class RandomTest implements InterfaceRandom {
     public int nextInt(int i) {
         return 0;
     }
+
+    @Override
+    public double nextDouble() {
+        return 0;
+    }
 }

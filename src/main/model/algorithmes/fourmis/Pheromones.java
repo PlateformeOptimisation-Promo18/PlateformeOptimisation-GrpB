@@ -4,9 +4,6 @@ import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Classe servant à reproduire les phéromones des fourmis en récompensant les meilleurs fourmis
  * (ajout de phéromone sur le chemin) et en reproduisant l'évaporation des phéromones. Elle sera
@@ -70,7 +67,7 @@ public class Pheromones {
         for (int i = 0; i < tracePheromones.length; i++) {
             boolean choixFait = false;
             double proba = 0;
-            int choixAleatoire = random.nextInt(1);
+            double choixAleatoire = random.nextDouble();
 
             for (int j = 0; j < tracePheromones[i].length; j++) {
                 proba += tracePheromones[i][j];
