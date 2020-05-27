@@ -3,7 +3,6 @@ package main.model.algorithmes.fourmis;
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
-import main.utils.TrueRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +17,15 @@ import java.util.List;
 
 public class Pheromones {
 
-    private List<double[]> tracePheromones;
-    //j'ai choisis cette structure de donnée car elle me semble plus évidente pour
-    //se représenter les choix des fourmis. On a la liste, représentant tous les chemins, et chaque tableau
-    //représente un choix entre différents chemins.
+    private double[][] tracePheromones;
 
 
     //-----------------GETTER ET SETTER POUR TESTS UNIQUEMENT----------------------------
-    public void setTracePheromones(List<double[]> tracePheromones) {
+    public void setTracePheromones(double[][] tracePheromones) {
         this.tracePheromones = tracePheromones;
     }
 
-    public List<double[]> getTracePheromones() {
+    public double[][] getTracePheromones() {
         return tracePheromones;
     }
     //------------------------------------------------------------------------------------
@@ -45,16 +41,17 @@ public class Pheromones {
      * @param problem le problème où l'on récupère le nombre de variable ainsi que de tâches
      */
     public Pheromones(Problem problem){
-        this.tracePheromones = new ArrayList<>();
+        int taille = problem.getTabSizeDomainVariables().length;
+        this.tracePheromones = new double[taille][];
 
-        for (int i = 0; i < problem.getTabSizeDomainVariables().length; i++){
+        for (int i = 0; i < taille; i++){
             int tailleChoix = problem.getTabSizeDomainVariables()[i];
             double[] choix = new double[tailleChoix];
 
             for(int j = 0; j < tailleChoix; j++){
                 choix[j] = 1/(tailleChoix*1.0);
             }
-            this.tracePheromones.add(choix);
+            this.tracePheromones[i] = choix;
         }
     }
 
@@ -121,18 +118,20 @@ public class Pheromones {
      */
     public void recompenser(Problem problem, Solution fourmis, double quantitePheromone) {
         boolean[] variablesActives = problem.GetActiveVariable(fourmis);
+        int parcoursVariablesActives = 0;
         int i = 0;
 
-        for (double[] tâche : tracePheromones) {
-            while(i < tâche.length) {
-                if (variablesActives[i]) {
-                    tâche[i] += quantitePheromone;
-                    i++;
+        for (double[] tache : tracePheromones) {
+            while(i < tache.length) {
+                if (variablesActives[parcoursVariablesActives]) {
+                    tache[i] += quantitePheromone;
                 }
+                    i++;
+                    parcoursVariablesActives++;
+                }
+            i = 0;
             }
-            i= 0;
         }
-    }
 
     /**
      *Permet d'ajuster les phéromones sur la liste tracePheromones. On cherche ici à ce que chaque tableau

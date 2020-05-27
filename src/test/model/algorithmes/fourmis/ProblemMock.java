@@ -9,6 +9,7 @@ public class ProblemMock implements Problem {
 
 
     private int [][] tabInit;
+    private boolean[] activeVariable;
 
     public ProblemMock(int [][] tabInit) {
 
@@ -17,6 +18,8 @@ public class ProblemMock implements Problem {
         for (int i = 0 ; i < tabInit.length ; i++){
             this.tabInit[i] = Arrays.copyOf(tabInit[i],tabInit[i].length);
         }
+
+        activeVariable = new boolean[]{true, false, true, false, false, true};
     }
 
     @Override
@@ -63,7 +66,7 @@ public class ProblemMock implements Problem {
 
     @Override
     public boolean[] GetActiveVariable(Solution sol) {
-        return new boolean[0];
+        return activeVariable;
     }
 
     @Override
