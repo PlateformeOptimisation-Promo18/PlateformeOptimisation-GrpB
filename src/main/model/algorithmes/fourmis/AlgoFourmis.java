@@ -45,7 +45,7 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
             long lStartTime = System.nanoTime();
             do {
                 for (int i = 0 ; i < iNbAnts ; i++){
-                    Fourmi fourmi = tracePheromones.nouvelleFourmi(pb);
+                    Fourmi fourmi = tracePheromones.nouvelleFourmi(pb, generator);
                     fourmi.evaluate(pb);
                     bestSolutions.addSolutionIfIsParetoFrontSolution(fourmi);
                 }
