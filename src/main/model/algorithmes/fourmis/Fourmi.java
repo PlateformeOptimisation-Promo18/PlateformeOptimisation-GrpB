@@ -14,6 +14,10 @@ public class Fourmi extends Solution {
         super(problem);
     }
 
+    public int[] getValuesVariables() {
+        return valueVariables;
+    }
+
 
     @Override
     public void evaluate(Problem pb) {

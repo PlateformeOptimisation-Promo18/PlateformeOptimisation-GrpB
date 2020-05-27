@@ -63,33 +63,28 @@ public class Pheromones {
      * @return un objet Fourmi avec le chemin par lequel elle est passée dans le problème selon
      * les phéromones.
      */
-    public Fourmi nouvelleFourmi(Problem problem, InterfaceRandom random){
+    public Fourmi nouvelleFourmi(Problem problem, InterfaceRandom random) {
         Fourmi fourmi = new Fourmi(problem);
+        int[] cheminPris = new int[tracePheromones.length];
 
-        for (double[] choix : tracePheromones) {
-            int tailleChoix = choix.length - 1;
-            int[] cheminPris = new int[tailleChoix];
-
+        for (int i = 0; i < tracePheromones.length; i++) {
             boolean choixFait = false;
+            double proba = 0;
+            int choixAleatoire = random.nextInt(1);
 
-            while (tailleChoix > 0 || !choixFait){
-                int choixAleatoire = random.nextInt(1);
+            for (int j = 0; j < tracePheromones[i].length; j++) {
+                proba += tracePheromones[i][j];
 
-                if(choixAleatoire <= choix[tailleChoix]){
-                    cheminPris[tailleChoix] = 1;
-                    choixFait = true;
+                if (!choixFait) {
+                    if (choixAleatoire <= proba) {
+                        cheminPris[i] = j;
+                        choixFait = true;
+                    }
                 }
-
-                if(!choixFait && tailleChoix == 1){
-                    cheminPris[tailleChoix] = 1;
-                }
-
-                tailleChoix--;
             }
-
-            fourmi.setValuesVariables(cheminPris);
         }
-        return fourmi;
+            fourmi.setValuesVariables(cheminPris);
+            return fourmi;
     }
 
     /**

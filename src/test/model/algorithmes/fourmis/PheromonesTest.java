@@ -37,7 +37,11 @@ class PheromonesTest {
 
     @Test
     void new_ant(){
-        pheromones.nouvelleFourmi(problem, generator);
+        int[] chemin = new int[]{0,0,0};
+
+        Fourmi fourmiTest = pheromones.nouvelleFourmi(problem, generator);
+
+        Assert.assertArrayEquals(chemin, fourmiTest.getValuesVariables());
     }
 
     @Test
