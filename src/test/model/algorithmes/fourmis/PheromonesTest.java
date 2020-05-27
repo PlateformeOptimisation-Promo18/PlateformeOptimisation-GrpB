@@ -24,7 +24,7 @@ class PheromonesTest {
         pheromones = new Pheromones(problem);
         List<double[]> pheromoneTrails = new LinkedList<>();
         double[] tab2 = {0.5,0.5};
-        double[] tab3 = {1/3, 1/3, 1/3};
+        double[] tab3 = {1/3*1.0, 1/3, 1/3};
         double[] tab2b = {0.5,0.5};
         pheromoneTrails.add(tab2);
         pheromoneTrails.add(tab3);
