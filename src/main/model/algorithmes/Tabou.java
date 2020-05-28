@@ -3,10 +3,7 @@ package main.model.algorithmes;
 import main.model.generic.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * La classe Tabou est utilisé pour rechercher la meilleur solution à un problème
@@ -57,16 +54,17 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 			e.getMessage();
 		}
 		//Liste Tabou vide
-    	Set<Solution> listTabou = new HashSet<>();
+		LinkedHashSet<Solution> listTabou = new LinkedHashSet<>();
+
+		listTabou.add(sSolutionCurrent);
 
     	//Détermine si on continue la recherche de solution
-    	while((listTabou.size()<iTabouListSize)||(iNbIteration != 0) || !stopRequired){
+    	while((iNbIteration != 0) || !stopRequired){
 
     		long lStartTime = System.nanoTime();
     		sSolutionCurrent.evaluate(pb);
     		evolutionHypervolum.add(sSolutionCurrent.evaluatePerf(pb));
-    		bestSolutions.addSolutionIfIsParetoFrontSolution(sSolutionCurrent);
-    		listTabou.add(sSolutionCurrent);
+
 
     		//création des voisins pour la solution
 			List<Solution> sNeighbours = new ArrayList<>();
@@ -100,6 +98,16 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 			}
 			long lTemps = (System.nanoTime() - lStartTime) / 1000000;
 			evolutionTime.add(lTemps);
+
+			bestSolutions.addSolutionIfIsParetoFrontSolution(sBestSolution);
+
+			//insertion du meilleur voisin dans la liste tabou
+			listTabou.add(sBestSolution);
+
+			if (listTabou.size()>iTabouListSize){
+				//supression du dernier element de la liste tabou
+
+			}
 
 			//nouvelle configuration, le meilleur voisin devient la solution courante
 			sSolutionCurrent = sBestSolution;
