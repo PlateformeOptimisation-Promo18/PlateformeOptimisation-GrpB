@@ -3,40 +3,40 @@ package model.generic;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 /**
- * Classe générique pour une solution d'un problème
- * normalement les algos ne font référence qu'à cette classe 
+ * Classe gÃ©nÃ©rique pour une solution d'un problÃ¨me
+ * normalement les algos ne font rÃ©fÃ©rence qu'Ã  cette classe
  * pour manipuler les solutions
  * @author p.pitiot
  *
  */
 public abstract class Solution {
 
-	protected int[] valueVariables;   // tableau des valeurs de variables correspondant à la solution
-									  // soit remplit aléatoirement avec RandomSetValues 
-									  // soit à la main avec setValues
-	protected List<Double> valuesObjectives;     // objectifs -> calculés par la méthode évaluer (méthode evaluate())
-	protected List<Double> valuesObjectivesNormalized;  // normalisation objectif -> en % par rapport aux min/max
-	protected double hypervolum = 0.0;  // double correspondant à la performance d'une solution
-										// calculé à partir des objectifs ou des objectifs normalisés
-	
+	protected int[] valueVariables;  // tableau des valeurs de variables correspondant Ã  la solution
+	// soit remplit alÃ©atoirement avec RandomSetValues
+	// soit Ã  la main avec setValues
+	protected List<Double> valuesObjectives; // objectifs -> calculÃ©s par la mÃ©thode Ã©valuer (mÃ©thode evaluate())
+	protected List<Double> valuesObjectivesNormalized; // normalisation objectif -> en % par rapport aux min/max
+	protected double hypervolum = 0.0; // double correspondant Ã  la performance d'une solution
+	// calculÃ© Ã  partir des objectifs ou des objectifs normalisÃ©s
+
 	/**
-	 * méthode à concrétiser pour l'évaluation d'une solution -> calcul les valeurs pour les objectifs 
-	 * pré-requis : il faut que le tableau valueVariables soit rempli
+	 * mÃ©thode Ã  concrÃ©tiser pour l'Ã©valuation d'une solution -> calcul les valeurs pour les objectifs
+	 * prÃ©-requis : il faut que le tableau valueVariables soit rempli
 	 * @param pb
 	 */
 	public abstract void evaluate(Problem pb);
+
 	/**
-	 * méthode à concrétiser pour le tirage aléatoire du tableau valueVariables
+	 * mÃ©thode Ã  concrÃ©tiser pour le tirage alÃ©atoire du tableau valueVariables
 	 * @param pb
-	 * @param generator référence vers un objet générateur de nombre, permet de mocker le génrateur
+	 * @param generator rÃ©fÃ©rence vers un objet gÃ©nÃ©rateur de nombre, permet de mocker le gÃ©nrateur
 	 * @throws Exception
 	 */
 	public abstract void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception;
-	
+
 	/**
-	 * constructeur de solution selon le problème correspondant donné en paramètre
+	 * constructeur de solution selon le problÃ¨me correspondant donnÃ© en paramÃ¨tre
 	 * @param gp
 	 */
 	public Solution(Problem gp) {
@@ -103,11 +103,12 @@ public abstract class Solution {
 	public int getValueVariable(int iIndexVariable) {
 		return valueVariables[iIndexVariable];
 	}
+
 	/**
-	 * méthode qui évalue (calcul des valeurs des objectifs) + 
-	 * calcul l'hypervolume (addition des valeurs normalisées d'objectifs)
+	 * mÃ©thode qui Ã©value (calcul des valeurs des objectifs) +
+	 * calcul l'hypervolume (addition des valeurs normalisÃ©es d'objectifs)
 	 * @param pb
-	 * @return la valeur de l'hypervolume calculé
+	 * @return la valeur de l'hypervolume calculÃ©
 	 */
 	public double evaluatePerf(Problem pb) {
 		evaluate(pb);
@@ -118,9 +119,12 @@ public abstract class Solution {
 		}
 		return hypervolum;
 	}
-	
 	protected void computeNormalizedObjective(Problem pb) {
-		// to do ticket
+		for (int i = 0; i < valuesObjectives.size(); i++) {
+			valuesObjectivesNormalized.set(i,
+					(pb.getMaxObjectif(i) - valuesObjectives.get(i)) / (pb.getMaxObjectif(i) - pb.getMinObjectif(i)));
+		}
+
 	}
 	
 	public boolean isDomined(Solution currentSolution) {

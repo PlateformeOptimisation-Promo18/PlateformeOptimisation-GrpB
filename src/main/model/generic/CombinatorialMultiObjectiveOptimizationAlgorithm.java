@@ -1,4 +1,4 @@
-package model.generic;
+package main.model.generic;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 
 import java.util.Observer;
 
-import application.StopRequired;
 
 /**
  * Classe abstraite pour les traitements génériques des algorithmes
@@ -68,10 +67,10 @@ public abstract class CombinatorialMultiObjectiveOptimizationAlgorithm implement
 	     * il faut qu'elle commence par la collecte des paramètres (listParam)
 	     * Elle va ensuite générer des solutions
 	     * A chaque pas de l'algorithme (boucle générale), il faut appeler la méthode UpdateAndSave()
-	     * @param pb	instance du problème à résoudre
+	     * @param probleme	instance du problème à résoudre
 	     * @param generator	objet générateur de nombre (classe héritant de InterfaceRandom)
 	     */
-	    public abstract void launch(InterfaceRandom generator);
+	    public abstract void launch(Problem probleme, InterfaceRandom generator);
 	   
 	    /**
 	     * Méthode de mise à jour des meilleurs solutions trouvées, des attributs pour l'interface
@@ -125,7 +124,7 @@ public abstract class CombinatorialMultiObjectiveOptimizationAlgorithm implement
 	    }
 	    /**
 	     * getter pour la liste des paramètres
-	     * @param liste des paramètres modifiés
+	     * @param list des paramètres modifiés
 	     */
 	    public void setParameters(List<Parameter> list){
 	    	this.listParam = list;

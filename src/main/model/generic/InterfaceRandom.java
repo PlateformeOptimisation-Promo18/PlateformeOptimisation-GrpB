@@ -1,8 +1,7 @@
 package main.model.generic;
-
 /**
- * Interface pour maocker le générateur de nombre Random
- * permet de simuler un générateur pour les tests
+ * Interface pour maocker le gÃ©nÃ©rateur de nombre Random
+ * permet de simuler un gÃ©nÃ©rateur pour les tests
  * @author p.pitiot
  *
  */
