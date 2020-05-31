@@ -28,15 +28,17 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
      */
     public Tabou(Problem pb, StopRequired stop, String algorithmName) {
         super(pb, stop, "Tabou");
-        
-        Parameter nbIterationMax = new Parameter(NB_IERATION_MAX, "Nombre d'it�ration max");
+
+        Parameter nbNeighbour = new Parameter(NB_NEIGHBOUR, "Nombre de voisins par solution");
+		this.listParam.add(nbNeighbour);
+
+		Parameter nbIterationMax = new Parameter(NB_IERATION_MAX, "Nombre d'it�ration max");
         this.listParam.add(nbIterationMax);
         
         Parameter tabouListSize = new Parameter(SIZE_TABOU_LIST, "Taille de la liste Tabou");
         this.listParam.add(tabouListSize);
         
-        Parameter nbNeighbour = new Parameter(NB_NEIGHBOUR, "Nombre de voisins par solution");
-        this.listParam.add(nbNeighbour);
+
        
     }
 
@@ -54,7 +56,7 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 			e.getMessage();
 		}
 		//Liste Tabou vide
-		LinkedHashSet<Solution> listTabou = new LinkedHashSet<>();
+		List<Solution> listTabou = new ArrayList<>();
 
 		listTabou.add(sSolutionCurrent);
 
@@ -106,7 +108,7 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
 			if (listTabou.size()>iTabouListSize){
 				//supression du dernier element de la liste tabou
-
+				listTabou.remove(listTabou.size()-1);
 			}
 
 			//nouvelle configuration, le meilleur voisin devient la solution courante
