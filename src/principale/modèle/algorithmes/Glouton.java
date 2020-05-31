@@ -1,9 +1,7 @@
 package model.algorithms.Random;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import main.model.generic.StopRequired;
 import main.model.generic.CombinatorialMultiObjectiveOptimizationAlgorithm;
 import main.model.generic.InterfaceRandom;
@@ -71,6 +69,7 @@ public class RandomSearchAlgo extends CombinatorialMultiObjectiveOptimizationAlg
 						k++;
 					}
 					i--;
+					
 				} while ( i != 0 && !stopRequired);
 				long lEstimatedTime = System.nanoTime() - lStartTime;
 				List<Solution> listNewSolution = new LinkedList<>();
