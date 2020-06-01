@@ -13,7 +13,6 @@ public class ProblemMock implements Problem {
 
 
     private int [][] tabInit;
-    private boolean[] activeVariable;
 
     /**
      * @param tabInit tableau des cas possible du problème
@@ -25,8 +24,6 @@ public class ProblemMock implements Problem {
         for (int i = 0 ; i < tabInit.length ; i++){
             this.tabInit[i] = Arrays.copyOf(tabInit[i],tabInit[i].length);
         }
-
-        activeVariable = new boolean[]{true, false, true, false, false, true};
     }
 
     /**
@@ -85,6 +82,25 @@ public class ProblemMock implements Problem {
 
     @Override
     public boolean[] GetActiveVariable(Solution sol) {
+
+        int[] parcours = sol.getValuesVariables();
+        int tailleMax = 0;
+
+        for (int[] etape: tabInit) {
+            tailleMax += etape.length;
+        }
+
+        boolean[] activeVariable = new boolean[tailleMax];
+
+        int tailleCumule = 0;
+
+        for(int i = 0 ; i < tabInit.length ; i++){
+            int index = parcours[i] + tailleCumule;
+            tailleCumule += tabInit[i].length;
+            i++;
+
+            activeVariable[index] = true;
+        }
         return activeVariable;
     }
 
