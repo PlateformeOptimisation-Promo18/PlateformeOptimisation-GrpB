@@ -10,13 +10,15 @@ public class TaskNode extends Node {
 	protected List<Alternative> listAlternatives;
 	protected int iIdTask;
 	protected String sName;
+	protected int iNbAlternatives;
 	
 	public TaskNode(Scanner sc, GraphProject graph) {
 		super();
-		sName = sc.next();
-		iIdTask = sc.nextInt();
-		listAlternatives = new ArrayList<Alternative>();
-		for(int i=0; i<sc.nextInt(); i++) {
+		this.sName = sc.next();
+		this.setiIdNode(sc.nextInt());
+		this.iNbAlternatives = sc.nextInt();
+		this.listAlternatives = new ArrayList<Alternative>();
+		for(int i=0; i<iNbAlternatives; i++) {
 			listAlternatives.add(new Alternative(sc, graph));
 		}
 	}
@@ -62,7 +64,7 @@ public class TaskNode extends Node {
 	}
 	
 	public int getNbAlternatives() {
-		return listAlternatives.size();
+		return iNbAlternatives;
 	}
 }
 

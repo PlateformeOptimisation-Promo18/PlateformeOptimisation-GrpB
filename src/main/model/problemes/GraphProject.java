@@ -17,6 +17,8 @@ public class GraphProject implements Problem {
     protected List<Node> projectGraph;
     protected List<Resource> listInitialResources;
     protected List<Objectif> listObjectives;
+    protected int iNbObjectives;
+    protected int iNbRessources;
     protected int iNbAndNode;
     protected int iNbOrNode;
     protected int iNbTaskNode;
@@ -25,33 +27,40 @@ public class GraphProject implements Problem {
     	projectGraph = new ArrayList<Node>();
     	listInitialResources = new ArrayList<Resource>();
     	listObjectives = new ArrayList<Objectif>();
-    	Path fic = Paths.get(System.getProperty("user.dir"), "gpTest.prj");
+    	Path fic = Paths.get(System.getProperty("user.dir"), text);
 		try (Scanner sc = new Scanner(fic)) {
 			sc.useLocale(Locale.FRENCH);
-			sName = sc.next();
-			for(int i=0; i<sc.nextInt();i++) {
+			sName = sc.nextLine();
+			this.iNbObjectives = sc.nextInt();
+			for(int i=0; i<iNbObjectives;i++) {
 				listObjectives.add(new Objectif(sc));
 			}
-			for(int i=0; i<sc.nextInt();i++) {
+			this.iNbRessources = sc.nextInt();
+			for(int i=0; i<iNbRessources;i++) {
 				listInitialResources.add(new Resource(sc));
 			}
+			sc.next();
 			iNbTaskNode = sc.nextInt();
 			for(int i=0; i<iNbTaskNode; i++) {
 				TaskNode tn = new TaskNode(sc, this);
-				projectGraph.add(tn.getiIdTask(), tn);
+				tn.setiIdTask(i);
+				projectGraph.add(tn);
 			}
+			sc.next();
 			iNbOrNode = sc.nextInt();
 			for(int i=0; i<iNbOrNode; i++) {
 				OrNode on = new OrNode(sc);
 				projectGraph.add(on.getiIdOrNode(), on);
 				projectGraph.add(on.getiIdEndOrNode(), new EndOrNode(on.getiIdEndOrNode(), on.getiIdOrNode()));
 			}
+			sc.next();
 			iNbAndNode = sc.nextInt();
 			for(int i=0; i<iNbAndNode; i++) {
 				AndNode an = new AndNode(sc);
 				projectGraph.add(an.getiIdAndNode(), an);
 				projectGraph.add(an.getiIdEndAndNode(), new EndAndNode(an.getiIdEndAndNode(), an.getiIdAndNode()));
 			}
+			sc.next();
 			for(int i=0; i<sc.nextInt(); i++) {
 				Node n = projectGraph.get(sc.nextInt());
 				for(int j=0; j<sc.nextInt(); j++) {
@@ -64,7 +73,7 @@ public class GraphProject implements Problem {
 			e.printStackTrace();
 		}
     }
-
+    
     public String getName () {
         return this.sName;
     }
@@ -78,7 +87,7 @@ public class GraphProject implements Problem {
     }
 
     public int getNbResources () {
-        return listInitialResources.size();
+        return iNbRessources;
     }
 
     public int getNbAnd () {
@@ -117,7 +126,7 @@ public class GraphProject implements Problem {
 
     @Override
     public int getNbObjectives() {
-        return listObjectives.size();
+        return iNbObjectives;
     }
 
     @Override

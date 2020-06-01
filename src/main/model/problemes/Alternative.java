@@ -9,6 +9,7 @@ public class Alternative{
 	protected String sName;
 	protected List<Double> listValueOfObjectif;
 	protected List<Resource> listResources;
+	protected int iNbRessources;
 	
 	public Alternative(Scanner sc, GraphProject graph) {
 		sName = sc.next();
@@ -17,7 +18,8 @@ public class Alternative{
 		for(int i = 0; i<graph.getNbObjectives(); i++) {
 			listValueOfObjectif.add(sc.nextDouble());
 		}
-		for(int i = 0; i<sc.nextInt(); i++) {
+		this.iNbRessources = sc.nextInt();
+		for(int i = 0; i<iNbRessources; i++) {
 			addResources(new Resource(sc));
 		}
 	}
@@ -27,8 +29,8 @@ public class Alternative{
 		for(int i=0; i<listValueOfObjectif.size(); i++) {
 			msg += "Objective " + (i+1) + ": " + listValueOfObjectif.get(i) +"; ";
 		}
-		for(int i=0; i<listResources.size(); i++) {
-			msg += "Resource " + i + ": " + listResources.get(i) +"; ";
+		for(int i=0; i<iNbRessources; i++) {
+			msg += "Resource " + listResources.get(i).getiIdResource() + ": " + listResources.get(i).getdQuantity() +"; ";
 		}
 		return msg;
 	}
