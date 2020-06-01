@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PlannedResources implements Comparable<PlannedResources> {
 	
-	protected double dLiberationDate;
+	public double dLiberationDate;
 	protected List<Resource> resourcesList;
 	
 	public PlannedResources(List <Resource> resourcesList, double dLiberationDate ) {
