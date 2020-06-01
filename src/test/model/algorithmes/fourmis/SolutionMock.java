@@ -1,23 +1,26 @@
-package main.model.algorithmes.fourmis;
+package test.model.algorithmes.fourmis;
 
 import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Fourmi extends Solution {
+/**
+ * @author Robin LECORVAISIER
+ */
+public class SolutionMock extends Solution {
 
-    public Fourmi(Solution sol) {
+    public SolutionMock(Problem gp) {
+        super(gp);
+        valuesObjectives = new ArrayList<>(gp.getNbObjectives());
+        valuesObjectives.add(0.0);
+        valuesObjectives.add(0.0);
+    }
+
+    public SolutionMock(Solution sol) {
         super(sol);
-    }
-
-    public Fourmi(Problem problem){
-        super(problem);
-    }
-
-    public int[] getValuesVariables() {
-        return valueVariables;
     }
 
     protected void setDuration(double iVal) {
@@ -29,7 +32,7 @@ public class Fourmi extends Solution {
     }
 
     @Override
-    public void evaluate(Problem pb) {
+    public void evaluate(Problem gpTest) {
 
         int tableauEntier[] = {0, 0, 0, 0, 0};
         if (Arrays.equals(this.valueVariables, tableauEntier)) {
@@ -152,12 +155,12 @@ public class Fourmi extends Solution {
             setDuration(4.3);
             setCost(18.4);
         }
-        int[] tableauEntier24 = {0, 0, 0, 1, 1};
+        int tableauEntier24[] = {0, 0, 0, 1, 1};
         if (Arrays.equals(this.valueVariables, tableauEntier24)) {
             setDuration(9.1);
             setCost(13.4);
         }
-        int[] tableauEntier25 = {1, 0, 0, 1, 1};
+        int tableauEntier25[] = {1, 0, 0, 1, 1};
         if (Arrays.equals(this.valueVariables, tableauEntier25)) {
             setDuration(14.4);
             setCost(19.9);
@@ -198,5 +201,4 @@ public class Fourmi extends Solution {
     public void randomSetValues(Problem pb, InterfaceRandom generator) throws Exception {
 
     }
-
 }

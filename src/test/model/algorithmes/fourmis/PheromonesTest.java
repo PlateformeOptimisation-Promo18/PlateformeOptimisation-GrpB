@@ -1,9 +1,8 @@
 package test.model.algorithmes.fourmis;
 
-import main.model.algorithmes.fourmis.Fourmi;
 import main.model.algorithmes.fourmis.Pheromones;
 import main.model.generic.Solution;
-import main.utils.testRandom;
+import main.utils.TestRandom;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,15 +14,15 @@ class PheromonesTest {
     Pheromones pheromones;
     ProblemMock problem;
     Solution fourmi;
-    testRandom generator;
+    TestRandom generator;
 
     @BeforeEach
     void setUp(){
         int[][] chemin = {{1}, {1,2}, {1,2,3}};
         problem = new ProblemMock(chemin);
         pheromones = new Pheromones(problem);
-        fourmi = new Fourmi(problem);
-        generator = new testRandom();
+        fourmi = new SolutionMock(problem);
+        generator = new TestRandom();
 
     }
 
@@ -37,7 +36,7 @@ class PheromonesTest {
     void new_ant(){
         int[] chemin = new int[]{0,1,2};
         generator.setDoubles(new double[]{0.5, 0.8, 0.667});
-        Fourmi fourmiTest = pheromones.nouvelleFourmi(problem, generator);
+        Solution fourmiTest = pheromones.nouvelleFourmi(problem, generator);
         Assert.assertArrayEquals(chemin, fourmiTest.getValuesVariables());
     }
 
