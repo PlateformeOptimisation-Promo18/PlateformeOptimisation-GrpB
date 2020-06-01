@@ -4,6 +4,10 @@ import main.model.generic.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Robin LECORVAISIER
+ * Algorithme des fourmis
+ */
 public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorithm {
 
     private static final int NB_MAX_ANT = 1000;
@@ -29,6 +33,11 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
         setParameters();
     }
 
+    /**
+     * boucle principale de l'algorithme des fourmis
+     * @param pb héritant de l'interface Problem
+     * @param generator	objet générateur de nombre (classe héritant de InterfaceRandom)
+     */
     @Override
     public void launch(Problem pb, InterfaceRandom generator) {
 
@@ -49,7 +58,7 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
             long lStartTime = System.nanoTime();
             do {
                 for (int i = 0 ; i < iNbAnts ; i++){
-                    Fourmi fourmi = tracePheromones.nouvelleFourmi(pb, generator);
+                    Solution fourmi = tracePheromones.nouvelleFourmi(pb, generator);
                     fourmi.evaluate(pb);
                     bestSolutions.addSolutionIfIsParetoFrontSolution(fourmi);
                 }
@@ -73,7 +82,9 @@ public class AlgoFourmis extends CombinatorialMultiObjectiveOptimizationAlgorith
     }
 
 
-
+    /**
+     * creation de la liste de Parameter pour que la plateforme ait accès aux noms et aux valeurs par défaut des attributs.
+     */
     private void setParameters() {
         ArrayList<Parameter> parameters = new ArrayList<>();
         parameters.add(new Parameter(NB_MAX_ANT,"iNbMaxAnts"));

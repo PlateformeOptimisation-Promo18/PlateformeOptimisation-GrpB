@@ -5,12 +5,19 @@ import main.model.generic.Solution;
 
 import java.util.Arrays;
 
+/**
+ * @author Robin LECORVAISIER et Jade Panchaud
+ *
+ */
 public class ProblemMock implements Problem {
 
 
     private int [][] tabInit;
     private boolean[] activeVariable;
 
+    /**
+     * @param tabInit tableau des cas possible du problème
+     */
     public ProblemMock(int [][] tabInit) {
 
         this.tabInit = new int[tabInit.length][];
@@ -22,16 +29,28 @@ public class ProblemMock implements Problem {
         activeVariable = new boolean[]{true, false, true, false, false, true};
     }
 
+    /**
+     *
+     * @return une solution
+     */
     @Override
     public Solution getSolution() {
-        return null;
+        return new SolutionMock(this);
     }
 
+    /**
+     * @param sol la solution à copier
+     * @return une copie de la solution
+     */
     @Override
     public Solution copySolution(Solution sol) {
-        return null;
+        return new SolutionMock(sol);
     }
 
+    /**
+     *
+     * @return un tableau du nombre de cas possible pour chaque étape
+     */
     @Override
     public int[] getTabSizeDomainVariables() {
 

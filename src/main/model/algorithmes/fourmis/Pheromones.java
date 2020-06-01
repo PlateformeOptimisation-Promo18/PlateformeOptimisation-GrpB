@@ -60,8 +60,8 @@ public class Pheromones {
      * @return un objet Fourmi avec le chemin par lequel elle est passée dans le problème selon
      * les phéromones.
      */
-    public Fourmi nouvelleFourmi(Problem problem, InterfaceRandom random) {
-        Fourmi fourmi = new Fourmi(problem);
+    public Solution nouvelleFourmi(Problem problem, InterfaceRandom random) {
+        Solution fourmi = problem.getSolution();
         int[] cheminPris = new int[tracePheromones.length];
 
         for (int i = 0; i < tracePheromones.length; i++) {
