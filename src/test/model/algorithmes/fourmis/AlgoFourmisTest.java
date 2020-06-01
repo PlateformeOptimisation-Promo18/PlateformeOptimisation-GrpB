@@ -36,7 +36,7 @@ class AlgoFourmisTest {
         int [][] problem = new int[][]{{0,1},{0,1},{0,1},{0,1},{0,1}};
         ProblemMock problemMock = new ProblemMock(problem);
         AlgoFourmis algoFourmis = new AlgoFourmis(problemMock,stop,"AlgoTest");
-        algoFourmis.setParameters(setParamters(2,2,10,0.05,0.1,0.05));
+        algoFourmis.setParameters(setParamters(2,1,10,0.05,0.1,0.05));
 
         TestRandom randomGenerator = new TestRandom();
 
