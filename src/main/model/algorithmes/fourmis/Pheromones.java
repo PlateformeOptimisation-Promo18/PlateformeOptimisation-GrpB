@@ -4,6 +4,7 @@ import main.model.generic.InterfaceRandom;
 import main.model.generic.Problem;
 import main.model.generic.Solution;
 
+
 /**
  * Classe servant à reproduire les phéromones des fourmis en récompensant les meilleurs fourmis
  * (ajout de phéromone sur le chemin) et en reproduisant l'évaporation des phéromones. Elle sera
@@ -15,6 +16,8 @@ import main.model.generic.Solution;
 public class Pheromones {
 
     private double[][] tracePheromones;
+    //J'ai choisi cette structure car elle permet un accès rapide aux valeurs, et de plus
+    //le tableau des phéromones est d'une trace déterminée.
 
 
     //-----------------GETTER ET SETTER POUR TESTS UNIQUEMENT----------------------------
@@ -125,70 +128,94 @@ public class Pheromones {
             }
         }
 
-//    /**
-//     *Permet d'ajuster les phéromones sur la liste tracePheromones. On cherche ici à ce que chaque tableau
-//     *  au sein de cette liste (soit un ensemble de choix de chemins), ait la même probabilité totale.
-//     *Si, lorsque l'on effectue cet ajustement, l'une des probabilités sur les chemins est en dessous de
-//     * la quantité minimale, alors on lui attribut cette valeur pour ne pas qu'il disparaisse.
-//     *
-//     * Pré-requis : la liste tracePheromones est initialisée.
-//     *
-//     * @param probaTotale la probabilité totale qu'on souhaite pour chaque tâche.
-//     * @param quantiteMinimalePheromone la quantité de phéromone que l'on souhaite sur un chemin pour ne pas qu'il disparaisse.
-//     */
-//    public void ajuster(double probaTotale, double quantiteMinimalePheromone) {
-//
-//
-//        for (double[] tache : tracePheromones) {
-//            for (double proba : tache) {
-//                proba = proba / probaTotale;
-//            }
-//
-//            double probaCumulee = probaCumulee(tache, probaTotale);
-//
-//            if (probaCumulee != 0){
-//                for(int i = 0; i < tache.length; i++){
-//                    tache[i] += probaCumulee/tache.length;
-//                }
-//            }
-//        }
-//
-//        ajusterMin(probaTotale, quantiteMinimalePheromone);
-//    }
-//
-//    public void ajusterMin(double probaTotale, double quantiteMinimalePheromone) {
-//
-//        for (double[] tache : tracePheromones) {
-//            double difference = 0;
-//            int nbProbaMin = 0;
-//
-//            for (double proba : tache) {
-//                if (proba < quantiteMinimalePheromone) {
-//                    difference = quantiteMinimalePheromone - proba;
-//                    proba += difference;
-//                    nbProbaMin++;
-//                }
-//            }
-//
-//            if(difference != 0){
-//                for(double proba : tache){
-//                    if(proba != quantiteMinimalePheromone){
-//                        proba -= difference/(tache.length-nbProbaMin);
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    public double probaCumulee(double[] tache, double probaTotale){
-//        double cumulee = 0;
-//
-//        for (double proba: tache) {
-//            cumulee += proba;
-//        }
-//
-//        return probaTotale-cumulee;
-//    }
+    /**
+     *Permet d'ajuster les phéromones sur la liste tracePheromones. On cherche ici à ce que chaque tableau
+     *  au sein de cette liste (soit un ensemble de choix de chemins), ait la même probabilité totale.
+     *Si, lorsque l'on effectue cet ajustement, l'une des probabilités sur les chemins est en dessous de
+     * la quantité minimale, alors on lui attribut cette valeur pour ne pas qu'il disparaisse.
+     *
+     * Pré-requis : la liste tracePheromones est initialisée. La probabilité totale est un nombre strictement positif.
+     *
+     * @param probaTotale la probabilité totale qu'on souhaite pour chaque tâche.
+     * @param quantiteMinimalePheromone la quantité de phéromone que l'on souhaite sur un chemin pour ne pas qu'il disparaisse.
+     */
+    public void ajuster(double probaTotale, double quantiteMinimalePheromone) {
+
+
+        for (int i = 0; i < tracePheromones.length; i++) {
+            for (int j = 0; j < tracePheromones[i].length; j++) {
+                tracePheromones[i][j] =  tracePheromones[i][j] / probaTotale;
+            }
+
+            double probaCumulee = probaCumulee( tracePheromones[i], probaTotale);
+
+            if (probaCumulee != 0){
+                for(int j = 0; j <  tracePheromones[i].length; j++){
+                    tracePheromones[i][j] += probaCumulee/tracePheromones[i].length;
+                }
+            }
+        }
+
+        ajusterMin(quantiteMinimalePheromone);
+    }
+
+    /**
+     * Méthode qui sert à mettre la probabilité minimale définie par l'utilisateur.
+     * Si une des probabilités doit être remontée à la valeur minimale, alors l'ajout de cette
+     * probabilité sera enlevée sur les autres probabilité du sous tableau des phéromones.
+     *
+     * Pré-requis : la proba minimale est une valeur strictement positive. Le tableau de phéromone doit être initialisé.
+     *
+     * @param quantiteMinimalePheromone la quantite minimale de phéromone sur un chemin.
+     */
+    public void ajusterMin(double quantiteMinimalePheromone) {
+
+        for (int i = 0; i < tracePheromones.length; i++) {
+            double differenceCumulee = 0;
+            double difference = 0;
+            double nbProbaMin = 0;
+
+            for (int j = 0; j < tracePheromones[i].length; j++) {
+                if (tracePheromones[i][j] < quantiteMinimalePheromone) {
+                    differenceCumulee += quantiteMinimalePheromone - tracePheromones[i][j];
+                    difference = quantiteMinimalePheromone - tracePheromones[i][j];
+                    tracePheromones[i][j] += difference;
+                    nbProbaMin++;
+                }
+            }
+
+            if(differenceCumulee != 0){
+                for(int j = 0; j < tracePheromones[i].length; j++){
+                    if(tracePheromones[i][j] != quantiteMinimalePheromone){
+                        tracePheromones[i][j] -= differenceCumulee/(tracePheromones[i].length-nbProbaMin);
+                        tracePheromones[i][j] = Math.round(tracePheromones[i][j]*1000.0)/1000.0;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     *  Permet de retourner la différence entre la probabilité totale et la probabilité cumulée des phéromones sur une tache.
+     *
+     *  Pré-requis : le tableau de phéromones est initialisé
+     *
+     * @param tache un sous tableau du tableau de phéromone
+     * @param probaTotale le paramètre de probabilité totale entrée par l'utilisateur
+     * @return la différence entre la probabilité totale et probabité cumulée dans le sous tableau.
+     */
+    public double probaCumulee(double[] tache, double probaTotale){
+        double cumulee = 0;
+
+        for (double proba: tache) {
+            cumulee += proba;
+        }
+
+        double difference = probaTotale-cumulee;
+        difference =  Math.round(difference*100.0)/100.0;
+
+        return difference;
+    }
 
 
 }
