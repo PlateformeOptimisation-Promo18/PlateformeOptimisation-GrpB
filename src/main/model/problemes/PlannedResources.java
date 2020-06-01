@@ -11,7 +11,10 @@ public class PlannedResources implements Comparable<PlannedResources> {
 		this.dLiberationDate = dLiberationDate;
 		this.resourcesList = resourcesList;
 	}
-	
+		
+	/**
+	 * compare les deux ressources planifiees en fonction de leur date de liberation
+	 */
 	@Override
 	public int compareTo(PlannedResources plannedResourcesToCompare) {
 		if(this.dLiberationDate < plannedResourcesToCompare.dLiberationDate) return -1;
@@ -19,10 +22,16 @@ public class PlannedResources implements Comparable<PlannedResources> {
 		else return 1;
 	}
 
+	/**
+	 * @return la date de liberation
+	 */
 	protected double getDateLiberation() {
 		return this.dLiberationDate;
 	}
 
+	/**
+	 * @return la liste de resources 
+	 */
 	public List<Resource> getResourcesList() {
 		return this.resourcesList;
 	}	
