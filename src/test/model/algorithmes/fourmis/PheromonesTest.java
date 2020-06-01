@@ -22,6 +22,7 @@ class PheromonesTest {
         problem = new ProblemMock(chemin);
         pheromones = new Pheromones(problem);
         fourmi = new SolutionMock(problem);
+        fourmi.setValuesVariables(new int[]{0,1,2});
         generator = new TestRandom();
 
     }
