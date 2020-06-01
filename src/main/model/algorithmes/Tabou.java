@@ -37,8 +37,6 @@ public class Tabou extends CombinatorialMultiObjectiveOptimizationAlgorithm {
         
         Parameter tabouListSize = new Parameter(SIZE_TABOU_LIST, "Taille de la liste Tabou");
         this.listParam.add(tabouListSize);
-        
-
        
     }
 

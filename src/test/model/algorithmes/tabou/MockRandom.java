@@ -1,7 +1,12 @@
 package test.model.algorithmes.tabou;
 
 import main.model.generic.InterfaceRandom;
-
+/**
+ * La classe MockRandom est utilisé pour génerer des solutions
+ *
+ * @author GARIS Damien & BATTLE-FONT Léa
+ *
+ */
 public class MockRandom implements InterfaceRandom {
 
     private static int iNbCall = -1;
