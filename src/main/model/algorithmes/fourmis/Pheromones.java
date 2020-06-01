@@ -125,27 +125,70 @@ public class Pheromones {
             }
         }
 
-    /**
-     *Permet d'ajuster les phéromones sur la liste tracePheromones. On cherche ici à ce que chaque tableau
-     *  au sein de cette liste (soit un ensemble de choix de chemins), ait la même probabilité totale.
-     *Si, lorsque l'on effectue cet ajustement, l'une des probabilités sur les chemins est en dessous de
-     * la quantité minimale, alors on lui attribut cette valeur pour ne pas qu'il disparaisse.
-     *
-     * Pré-requis : la liste tracePheromones est initialisée.
-     *
-     * @param probaTotale la probabilité totale qu'on souhaite pour chaque tâche.
-     * @param quantiteMinimalePheromone la quantité de phéromone que l'on souhaite sur un chemin pour ne pas qu'il disparaisse.
-     */
-    public void ajuster(double probaTotale, double quantiteMinimalePheromone){
-        for (double[] tache: tracePheromones) {
-            for (double proba: tache) {
-                proba = proba/probaTotale;
-                if(proba < quantiteMinimalePheromone){
-                    proba += (quantiteMinimalePheromone - proba);
-                }
-            }
-        }
-    }
+//    /**
+//     *Permet d'ajuster les phéromones sur la liste tracePheromones. On cherche ici à ce que chaque tableau
+//     *  au sein de cette liste (soit un ensemble de choix de chemins), ait la même probabilité totale.
+//     *Si, lorsque l'on effectue cet ajustement, l'une des probabilités sur les chemins est en dessous de
+//     * la quantité minimale, alors on lui attribut cette valeur pour ne pas qu'il disparaisse.
+//     *
+//     * Pré-requis : la liste tracePheromones est initialisée.
+//     *
+//     * @param probaTotale la probabilité totale qu'on souhaite pour chaque tâche.
+//     * @param quantiteMinimalePheromone la quantité de phéromone que l'on souhaite sur un chemin pour ne pas qu'il disparaisse.
+//     */
+//    public void ajuster(double probaTotale, double quantiteMinimalePheromone) {
+//
+//
+//        for (double[] tache : tracePheromones) {
+//            for (double proba : tache) {
+//                proba = proba / probaTotale;
+//            }
+//
+//            double probaCumulee = probaCumulee(tache, probaTotale);
+//
+//            if (probaCumulee != 0){
+//                for(int i = 0; i < tache.length; i++){
+//                    tache[i] += probaCumulee/tache.length;
+//                }
+//            }
+//        }
+//
+//        ajusterMin(probaTotale, quantiteMinimalePheromone);
+//    }
+//
+//    public void ajusterMin(double probaTotale, double quantiteMinimalePheromone) {
+//
+//        for (double[] tache : tracePheromones) {
+//            double difference = 0;
+//            int nbProbaMin = 0;
+//
+//            for (double proba : tache) {
+//                if (proba < quantiteMinimalePheromone) {
+//                    difference = quantiteMinimalePheromone - proba;
+//                    proba += difference;
+//                    nbProbaMin++;
+//                }
+//            }
+//
+//            if(difference != 0){
+//                for(double proba : tache){
+//                    if(proba != quantiteMinimalePheromone){
+//                        proba -= difference/(tache.length-nbProbaMin);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    public double probaCumulee(double[] tache, double probaTotale){
+//        double cumulee = 0;
+//
+//        for (double proba: tache) {
+//            cumulee += proba;
+//        }
+//
+//        return probaTotale-cumulee;
+//    }
 
 
 }

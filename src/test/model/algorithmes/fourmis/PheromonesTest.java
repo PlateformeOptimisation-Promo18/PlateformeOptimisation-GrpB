@@ -2,7 +2,6 @@ package test.model.algorithmes.fourmis;
 
 import main.model.algorithmes.fourmis.Fourmi;
 import main.model.algorithmes.fourmis.Pheromones;
-import main.model.generic.InterfaceRandom;
 import main.model.generic.Solution;
 import main.utils.testRandom;
 import org.junit.Assert;
@@ -62,14 +61,13 @@ class PheromonesTest {
 
     @Test
     void total_proba_should_equals_1(){
-        pheromones.ajuster(1, 0);
-        for (double[] tache: pheromones.getTracePheromones()) {
-            double proba = 0;
-            for(int i = 0; i < tache.length; i++){
-                proba += tache[i];
-            }
-            assertEquals(1.0, proba);
-        }
+        double[][] pheromoneTest = {{0.9}, {0.05,0.95}, {1,0.1,0.1}};
+        pheromones.setTracePheromones(pheromoneTest);
+        pheromones.ajuster(1, 0.1);
+
+        double[][] pheromoneExpected = {{1}, {0.1,0.9}, {0.8,0.1,0.1}};
+
+        Assert.assertArrayEquals(pheromoneExpected, pheromones.getTracePheromones());
     }
 
 }
