@@ -97,7 +97,6 @@ public class ProblemMock implements Problem {
         for(int i = 0 ; i < tabInit.length ; i++){
             int index = parcours[i] + tailleCumule;
             tailleCumule += tabInit[i].length;
-            i++;
 
             activeVariable[index] = true;
         }
