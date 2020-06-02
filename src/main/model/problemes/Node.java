@@ -10,6 +10,7 @@ public abstract class Node implements Comparable<Node>{
 	List<Integer> listPrevious;
 	
 	public Node() {
+		// Initialisation des listes
 		listNexts = new ArrayList<Integer>();
 		listPrevious = new ArrayList<Integer>();
 	}

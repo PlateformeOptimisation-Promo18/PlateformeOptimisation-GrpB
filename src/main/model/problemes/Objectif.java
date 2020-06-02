@@ -17,6 +17,7 @@ public class Objectif {
 	}
 	
 	protected void FLoad(Scanner sc) {
+		// Chargement du nom de l'objectif
 		sName = sc.next();
 	}
 	

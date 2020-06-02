@@ -11,6 +11,8 @@ public class AndNode extends Node {
 	}
 	
 	public AndNode(Scanner sc) {
+		super();
+		// Attribution de l'ID
 		this.setiIdNode(sc.nextInt());
 		iIdEndAndNode = sc.nextInt();
 	}

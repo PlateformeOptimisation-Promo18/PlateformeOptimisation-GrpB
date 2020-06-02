@@ -24,29 +24,43 @@ public class GraphProject implements Problem {
     protected int iNbTaskNode;
 
     public GraphProject (String text) {
+    	
+    	// Initialisation des listes
     	projectGraph = new ArrayList<Node>();
     	listInitialResources = new ArrayList<Resource>();
     	listObjectives = new ArrayList<Objectif>();
+    	
+    	// Recherche du fichier
     	Path fic = Paths.get(System.getProperty("user.dir"), text);
 		try (Scanner sc = new Scanner(fic)) {
 			sc.useLocale(Locale.FRENCH);
+			
+			// Nom du Project Graph
 			sName = sc.nextLine();
+			
+			// Chargement des objetifs
 			this.iNbObjectives = sc.nextInt();
 			for(int i=0; i<iNbObjectives;i++) {
 				listObjectives.add(new Objectif(sc));
 			}
+			
+			// Chargement des ressources
 			this.iNbRessources = sc.nextInt();
 			for(int i=0; i<iNbRessources;i++) {
 				listInitialResources.add(new Resource(sc));
 			}
+			
 			sc.next();
+			// Chargement des taches
 			iNbTaskNode = sc.nextInt();
 			for(int i=0; i<iNbTaskNode; i++) {
 				TaskNode tn = new TaskNode(sc, this);
 				tn.setiIdTask(i);
 				projectGraph.add(tn);
 			}
+			
 			sc.next();
+			// Chargement des noeuds OU
 			iNbOrNode = sc.nextInt();
 			for(int i=0; i<iNbOrNode; i++) {
 				OrNode on = new OrNode(sc);
@@ -54,14 +68,20 @@ public class GraphProject implements Problem {
 				projectGraph.add(on);
 				projectGraph.add(new EndOrNode(on.getiIdEndOrNode(), on.getiIdNode()));
 			}
+			
 			sc.next();
+			// Chargement des noeuds ET
 			iNbAndNode = sc.nextInt();
 			for(int i=0; i<iNbAndNode; i++) {
 				AndNode an = new AndNode(sc);
 				projectGraph.add(an);
 				projectGraph.add(new EndAndNode(an.getiIdEndAndNode(), an.getiIdNode()));
 			}
+			
+			// Tri de la liste de noeuds dans l'ordre des ID
+			projectGraph.sort(null);
 			sc.next();
+			// Remplissage des listes NextNode et PreviousNode
 			for(int i=0; i<sc.nextInt(); i++) {
 				Node n = projectGraph.get(sc.nextInt());
 				for(int j=0; j<sc.nextInt(); j++) {
@@ -70,7 +90,6 @@ public class GraphProject implements Problem {
 					projectGraph.get(sc.nextInt()).setPreviousNode(n.iIdNode);
 				}
 			}
-			projectGraph.sort(null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

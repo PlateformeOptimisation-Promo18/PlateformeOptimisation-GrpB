@@ -7,6 +7,8 @@ public class EndAndNode extends Node {
 	protected int iIdBeginAndNode;
 		
 	public EndAndNode (int IdEndAndNode, int IdBeginAndNode) {
+		super();
+		// Attribution de l'ID
 		this.setiIdNode(IdEndAndNode);
 		iIdBeginAndNode = IdEndAndNode;
 	}

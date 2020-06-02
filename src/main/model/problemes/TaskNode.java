@@ -14,10 +14,12 @@ public class TaskNode extends Node {
 	
 	public TaskNode(Scanner sc, GraphProject graph) {
 		super();
+		// Chargement du nom de la tache
 		this.sName = sc.next();
 		this.setiIdNode(sc.nextInt());
 		this.iNbAlternatives = sc.nextInt();
 		this.listAlternatives = new ArrayList<Alternative>();
+		// Chargement des alternatives
 		for(int i=0; i<iNbAlternatives; i++) {
 			listAlternatives.add(new Alternative(sc, graph));
 		}
@@ -70,12 +72,24 @@ public class TaskNode extends Node {
 
 class ComparatorAlternativeDuration implements Comparator<Alternative>{
 	public int compare(Alternative alt1, Alternative alt2) {
-		return 0;
+		if (alt1.getDuration()>alt2.getDuration()) {
+			return 1;
+		} else if (alt1.getDuration()==alt2.getDuration()) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 }
 
 class ComparatorAlternativeCost implements Comparator<Alternative>{
 	public int compare(Alternative alt1, Alternative alt2) {
-		return 0;
+		if (alt1.getCost()>alt2.getCost()) {
+			return 1;
+		} else if (alt1.getCost()==alt2.getCost()) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 }

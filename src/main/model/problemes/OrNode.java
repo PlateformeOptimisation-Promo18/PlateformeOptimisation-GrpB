@@ -8,6 +8,8 @@ public class OrNode extends Node {
 	protected int iIdOrNode;
 	
 	public OrNode(Scanner sc) {
+		super();
+		// Attribution de l'ID
 		this.setiIdNode(sc.nextInt());
 		iIdEndOrNode = sc.nextInt();
 	}
