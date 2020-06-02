@@ -11,6 +11,11 @@ public class Alternative{
 	protected List<Resource> listResources;
 	protected int iNbRessources;
 	
+	/**
+     * Crée une alternative et lui attribue des valeurs d'objectif et des ressources
+     * @param sc : Scanner parcourant le fichier
+     * @param graph : GraphProject contenant les objectifs
+     */
 	public Alternative(Scanner sc, GraphProject graph) {
 		// Chargement du nom de l'alternative
 		sName = sc.next();
@@ -31,6 +36,10 @@ public class Alternative{
 		}
 	}
 	
+	/**
+     * Renvoie un String décrivant l'ensemble des éléments de l'alternative
+     * @return Descriptif des éléments
+     */
 	public String toString() {
 		String msg = "Name: " + sName + "; ";
 		// Ajout de chaque objectif au String
@@ -44,22 +53,42 @@ public class Alternative{
 		return msg;
 	}
 	
+	/**
+     * Renvoie le nom de l'alternative
+     * @return Nom
+     */
 	public String getName() {
 		return sName;
 	}
 	
+	/**
+     * Renvoie une référence à la liste de ressources utilisées par l'alternative
+     * @return Liste de ressources
+     */
 	public List<Resource> getListResources() {
 		return listResources;
 	}
 	
+	/**
+     * Ajoute un ressource à la liste des ressources utilisées par l'alternative
+     * @param resource : ressource à ajouter
+     */
 	public void addResources (Resource resource) {
 		listResources.add(resource);
 	}
 	
+	/**
+     * Renvoie le coût de l'alternative
+     * @return Coût
+     */
 	public double getCost() {
 		return listValueOfObjectif.get(0);
 	}
 	
+	/**
+     * Renvoie la durée de l'aternative
+     * @return Durée
+     */
 	public double getDuration() {
 		return listValueOfObjectif.get(1);
 	}

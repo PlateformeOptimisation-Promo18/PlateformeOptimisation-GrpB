@@ -23,6 +23,10 @@ public class GraphProject implements Problem {
     protected int iNbOrNode;
     protected int iNbTaskNode;
 
+    /**
+     * Construit un GraphProjet en parcourant un fichier
+     * @param text : Nom du fichier à parcourir
+     */
     public GraphProject (String text) {
     	
     	// Initialisation des listes
@@ -95,22 +99,42 @@ public class GraphProject implements Problem {
 		}
     }
     
+    /**
+     * Renvoie le nom du GraphProject
+     * @return Nom du GraphProject
+     */
     public String getName () {
         return this.sName;
     }
 
+    /**
+     * Renvoie le nombre de noeuds OU du GraphProject
+     * @return Nombr de noeuds OU
+     */
     public int getNbOr () {
     	return iNbOrNode;
     }
 
+    /**
+     * Renvoie le nombre de noeuds taches du GraphProject
+     * @return Nombre de noeuds taches
+     */
     public int getNbTasks () {
         return iNbTaskNode;
     }
 
+    /**
+     * Renvoie le nombre de ressources du GraphProject
+     * @return Nombre de ressources
+     */
     public int getNbResources () {
         return iNbRessources;
     }
 
+    /**
+     * Renvoie le nombre de noeuds ET du GraphProject
+     * @return Nombre de noeuds ET
+     */
     public int getNbAnd () {
         return iNbAndNode;
     }
@@ -145,6 +169,10 @@ public class GraphProject implements Problem {
         return null;
     }
 
+    /**
+     * Renvoie le nombre d'objectifs du GraphProject
+     * @return Nombre d'objectifs
+     */
     @Override
     public int getNbObjectives() {
         return iNbObjectives;
