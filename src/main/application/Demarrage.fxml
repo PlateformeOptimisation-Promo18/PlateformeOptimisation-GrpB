@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.ControllerDem">
+    <center>
+        <VBox alignment="CENTER" maxHeight="500.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Bienvenue dans" textFill="#780707">
+                    <font>
+                        <Font name="Perpetua" size="44.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="106.0" prefWidth="447.0" text="l'optimisateur de problèmes" textFill="#780707">
+                    <font>
+                        <Font name="Perpetua" size="44.0" />
+                    </font>
+                </Label>
+            <Line endX="368.626220703125" endY="-0.5716537237167358" startX="12.340869903564453" startY="0.09500857442617416" stroke="#850909" />
+                <Button fx:id="DemButton" mnemonicParsing="false" onAction="#DemButtonClick" text="Entrez" textFill="#730e0e">
+                    <font>
+                            <Font name="Scheherazade" size="41.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="40.0" />
+                    </VBox.margin></Button>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
