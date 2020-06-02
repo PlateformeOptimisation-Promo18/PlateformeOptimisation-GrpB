@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="buttonCompare" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="main.application.UploadPb">
+   <children>
+      <Label layoutX="237.0" layoutY="35.0" text="Téléchargé vos fichiers" />
+      <Button fx:id="btnFichier1" layoutX="85.0" layoutY="187.0" mnemonicParsing="false" onAction="#uploadFichier" text="Fichier1" />
+      <Button fx:id="btnFichier2" layoutX="453.0" layoutY="187.0" mnemonicParsing="false" onAction="#uploadFichier2" text="Fichier2" />
+      <Label fx:id="labelfichier1" layoutX="100.0" layoutY="221.0" />
+      <Label fx:id="labelfichier2" layoutX="469.0" layoutY="230.0" />
+      <Button fx:id="btnCompare" layoutX="273.0" layoutY="303.0" mnemonicParsing="false" onAction="#startComparaison" text="Comparer" />
+      <Button fx:id="btnClose" layoutX="273" layoutY="350" mnemonicParsing="false"
+              text="Close"/>
+   </children>
+</AnchorPane>
