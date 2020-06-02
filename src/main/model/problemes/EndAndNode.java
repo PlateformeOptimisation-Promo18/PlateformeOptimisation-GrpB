@@ -5,11 +5,10 @@ import java.util.Scanner;
 public class EndAndNode extends Node {
 		
 	protected int iIdBeginAndNode;
-	protected int iIdEndAndNode;
 		
 	public EndAndNode (int IdEndAndNode, int IdBeginAndNode) {
-		iIdBeginAndNode = IdBeginAndNode;
-		iIdEndAndNode = IdEndAndNode;
+		this.setiIdNode(IdEndAndNode);
+		iIdBeginAndNode = IdEndAndNode;
 	}
 		
 	protected int getiIdBeginAndNode() {
@@ -19,16 +18,8 @@ public class EndAndNode extends Node {
 	protected void setiIdBeginAndNode(int iBeginAndNode) {
 		this.iIdBeginAndNode = iBeginAndNode;
 	}
-	
-	protected int getiIdEndAndNode() {
-		return iIdEndAndNode;
-	}
-		
-	protected void setiIdEndAndNode(int iEndAndNode) {
-		this.iIdEndAndNode = iEndAndNode;
-	}
 		
 	public String toString() {
-		return "Id Begin And Node: " + iIdBeginAndNode + "; Id End And Node: " + iIdEndAndNode + ";";
+		return "Id Node: " + this.getiIdNode() + "; Id Begin And Node: " + iIdBeginAndNode + ";";
 	}
 }

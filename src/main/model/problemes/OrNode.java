@@ -8,7 +8,7 @@ public class OrNode extends Node {
 	protected int iIdOrNode;
 	
 	public OrNode(Scanner sc) {
-		iIdOrNode = sc.nextInt();
+		this.setiIdNode(sc.nextInt());
 		iIdEndOrNode = sc.nextInt();
 	}
 	
@@ -25,10 +25,10 @@ public class OrNode extends Node {
 	}
 	
 	protected void setiIdOrNode(int iIdOrNode) {
-		this.iIdEndOrNode = iIdOrNode;
+		this.iIdOrNode = iIdOrNode;
 	}
 	
 	public String toString() {
-		return "Id Or Node: " + iIdOrNode + "; Id End Or Node: " + iIdEndOrNode + ";";
+		return "Id Node: " + this.getiIdNode() + "; Id End Or Node: " + iIdEndOrNode + ";";
 	}
 }

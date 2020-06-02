@@ -50,15 +50,16 @@ public class GraphProject implements Problem {
 			iNbOrNode = sc.nextInt();
 			for(int i=0; i<iNbOrNode; i++) {
 				OrNode on = new OrNode(sc);
-				projectGraph.add(on.getiIdOrNode(), on);
-				projectGraph.add(on.getiIdEndOrNode(), new EndOrNode(on.getiIdEndOrNode(), on.getiIdOrNode()));
+				on.setiIdOrNode(i);
+				projectGraph.add(on);
+				projectGraph.add(new EndOrNode(on.getiIdEndOrNode(), on.getiIdNode()));
 			}
 			sc.next();
 			iNbAndNode = sc.nextInt();
 			for(int i=0; i<iNbAndNode; i++) {
 				AndNode an = new AndNode(sc);
-				projectGraph.add(an.getiIdAndNode(), an);
-				projectGraph.add(an.getiIdEndAndNode(), new EndAndNode(an.getiIdEndAndNode(), an.getiIdAndNode()));
+				projectGraph.add(an);
+				projectGraph.add(new EndAndNode(an.getiIdEndAndNode(), an.getiIdNode()));
 			}
 			sc.next();
 			for(int i=0; i<sc.nextInt(); i++) {
@@ -69,6 +70,7 @@ public class GraphProject implements Problem {
 					projectGraph.get(sc.nextInt()).setPreviousNode(n.iIdNode);
 				}
 			}
+			projectGraph.sort(null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

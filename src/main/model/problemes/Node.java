@@ -51,7 +51,13 @@ public abstract class Node implements Comparable<Node>{
 	}
 	
 	public int compareTo(Node o) {
-		return 0;
+		if (o.getiIdNode()<this.getiIdNode()){
+			return 1;
+		} else if (o.getiIdNode()==this.getiIdNode()){
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 	
 	public int getNbNexts() {
