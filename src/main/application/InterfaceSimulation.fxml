@@ -3,15 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.ControllerSimulation">
+<BorderPane fx:id="borderPaneMain" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.ControllerSimulation">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="51.0" layoutY="92.0" text="Contenu au centre" />
-         </children></Pane>
+         </children>
+       </Pane>
    </center>
    <right>
       <VBox id="bg-light-grey" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -20,4 +22,12 @@
          </children>
       </VBox>
    </right>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="radioButtonGroupNb" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="radioButtonGroupType" prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
